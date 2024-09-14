@@ -14,7 +14,11 @@ export default function RootLayout({
 }>) {
   return (
     <RootProvider>
-      <div className={`antialiased w-full h-full dark:bg-zinc-950 dark:text-zinc-200`}>{children}</div>
+      <div
+        className={`antialiased w-full h-full dark:bg-zinc-950 dark:text-zinc-200`}
+      >
+        {children}
+      </div>
     </RootProvider>
   )
 }
