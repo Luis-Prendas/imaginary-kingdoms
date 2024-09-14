@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "phenix": "if exist node_modules rmdir /s /q node_modules && if exist package-lock.json del package-lock.json && npm install"
   },
   "dependencies": {
     "next": "14.2.11",
