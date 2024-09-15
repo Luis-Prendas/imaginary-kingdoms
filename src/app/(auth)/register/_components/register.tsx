@@ -66,7 +66,7 @@ export default function Register() {
           <CardTitle>Register</CardTitle>
           <CardDescription>Create your account to log in.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className='flex flex-col gap-4'>
           <FormField
             control={form.control}
             name='username'
@@ -107,7 +107,7 @@ export default function Register() {
             )}
           />
         </CardContent>
-        <CardFooter>
+        <CardFooter className='flex justify-end gap-4'>
           <Button type='submit' disabled={isPending}>
             {isPending ? (
               <>

@@ -74,7 +74,7 @@ export default function Login() {
           <CardTitle>Login</CardTitle>
           <CardDescription>Use your account to log in.</CardDescription>
         </CardHeader>
-        <CardContent>
+        <CardContent className='flex flex-col gap-4'>
           <FormField
             control={form.control}
             name='email'
