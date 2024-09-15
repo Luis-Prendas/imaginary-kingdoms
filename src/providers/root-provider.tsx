@@ -1,11 +1,18 @@
+import { ThemeProvider } from './theme-provider/theme-provider'
+
 export default function RootProvider({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang='en'>
-      <body className={`dark`}>{children}</body>
-    </html>
+    <ThemeProvider
+      attribute='class'
+      defaultTheme='system'
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </ThemeProvider>
   )
 }

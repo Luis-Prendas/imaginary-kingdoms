@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card'
 import Login from './_components/login'
 
 export const metadata = {
@@ -6,5 +7,11 @@ export const metadata = {
 }
 
 export default function LoginPage() {
-  return <Login />
+  return (
+    <main className='flex justify-center items-center h-full w-full'>
+      <Card className='w-[350px]'>
+        <Login />
+      </Card>
+    </main>
+  )
 }

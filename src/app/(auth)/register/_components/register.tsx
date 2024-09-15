@@ -19,31 +19,32 @@ import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { LoginSchema } from '@/lib/zod'
-import { loginAction } from '@/actions/auth-action'
-import { useState, useTransition } from 'react'
+import { RegisterSchema } from '@/lib/zod'
+import { registerAction } from '@/actions/auth-action'
+import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { ToastAction } from '@/components/ui/toast'
 
-export default function Login() {
+export default function Register() {
   const router = useRouter()
   const { toast } = useToast()
 
   const [isPending, startTransition] = useTransition()
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
       email: '',
       password: '',
+      username: '',
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
-      const response = await loginAction(values)
+      const response = await registerAction(values)
       if (response.error) {
         console.log(response.error)
         toast({
@@ -62,10 +63,23 @@ export default function Login() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Use your account to log in.</CardDescription>
+          <CardTitle>Register</CardTitle>
+          <CardDescription>Create your account to log in.</CardDescription>
         </CardHeader>
         <CardContent>
+          <FormField
+            control={form.control}
+            name='username'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Input placeholder='Username' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name='email'
@@ -101,7 +115,7 @@ export default function Login() {
                 Please wait...
               </>
             ) : (
-              'Login'
+              'Register'
             )}
           </Button>
         </CardFooter>
