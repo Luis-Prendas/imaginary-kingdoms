@@ -9,7 +9,7 @@ import bcrypt from 'bcryptjs'
 
 export const loginAction = async (values: z.infer<typeof LoginSchema>) => {
   try {
-    await signIn('credentials', {
+    const response = await signIn('credentials', {
       email: values.email,
       password: values.password,
       redirect: false,

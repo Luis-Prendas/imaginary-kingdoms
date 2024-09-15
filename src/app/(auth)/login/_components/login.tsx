@@ -21,15 +21,24 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { LoginSchema } from '@/lib/zod'
 import { loginAction } from '@/actions/auth-action'
-import { useState, useTransition } from 'react'
+import { useEffect, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { Loader2 } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { ToastAction } from '@/components/ui/toast'
+import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
 export default function Login() {
+  const session = useSession()
   const router = useRouter()
   const { toast } = useToast()
+
+  useEffect(() => {
+    if (session.data) {
+      router.push('/home')
+    }
+  }, [session])
 
   const [isPending, startTransition] = useTransition()
 
@@ -53,7 +62,7 @@ export default function Login() {
           action: <ToastAction altText='Try again'>Try again</ToastAction>,
         })
       } else {
-        router.push('/home')
+        router.replace('/home')
       }
     })
   }
@@ -93,7 +102,10 @@ export default function Login() {
             )}
           />
         </CardContent>
-        <CardFooter>
+        <CardFooter className='flex justify-end gap-4'>
+          <Button asChild>
+            <Link href='/register'>Register</Link>
+          </Button>
           <Button type='submit' disabled={isPending}>
             {isPending ? (
               <>

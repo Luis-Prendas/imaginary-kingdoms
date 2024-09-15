@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run format && next dev",
+    "build": "npm run format && next build",
     "start": "next start",
     "format": "prettier --write .",
     "phenix": "if exist node_modules rmdir /s /q node_modules && if exist package-lock.json del package-lock.json && npm install"

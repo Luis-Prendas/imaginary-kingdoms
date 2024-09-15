@@ -1,4 +1,5 @@
 import { ThemeProvider } from './theme-provider/theme-provider'
+import { SessionProvider } from 'next-auth/react'
 
 export default function RootProvider({
   children,
@@ -6,13 +7,15 @@ export default function RootProvider({
   children: React.ReactNode
 }) {
   return (
-    <ThemeProvider
-      attribute='class'
-      defaultTheme='system'
-      enableSystem
-      disableTransitionOnChange
-    >
-      {children}
-    </ThemeProvider>
+    <SessionProvider>
+      <ThemeProvider
+        attribute='class'
+        defaultTheme='system'
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </ThemeProvider>
+    </SessionProvider>
   )
 }
