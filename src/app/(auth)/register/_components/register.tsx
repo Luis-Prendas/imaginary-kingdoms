@@ -23,7 +23,7 @@ import { RegisterSchema } from '@/lib/zod'
 import { registerAction } from '@/actions/auth-action'
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
+import { Loader2, NotebookPen } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { ToastAction } from '@/components/ui/toast'
 
@@ -108,15 +108,17 @@ export default function Register() {
           />
         </CardContent>
         <CardFooter className='flex justify-end gap-4'>
-          <Button type='submit' disabled={isPending}>
+          <Button
+            type='submit'
+            className='flex items-center gap-2'
+            disabled={isPending}
+          >
             {isPending ? (
-              <>
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                Please wait...
-              </>
+              <Loader2 className='h-4 w-4 animate-spin' />
             ) : (
-              'Register'
+              <NotebookPen className='h-4 w-4' />
             )}
+            Register
           </Button>
         </CardFooter>
       </form>

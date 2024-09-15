@@ -23,7 +23,7 @@ import { LoginSchema } from '@/lib/zod'
 import { loginAction } from '@/actions/auth-action'
 import { useEffect, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { Loader2 } from 'lucide-react'
+import { Loader2, LogIn, NotebookPen } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { ToastAction } from '@/components/ui/toast'
 import Link from 'next/link'
@@ -103,18 +103,27 @@ export default function Login() {
           />
         </CardContent>
         <CardFooter className='flex justify-end gap-4'>
-          <Button asChild>
-            <Link href='/register'>Register</Link>
+          <Button asChild disabled={isPending}>
+            <Link href='/register' className='flex items-center gap-2'>
+              {isPending ? (
+                <Loader2 className='h-4 w-4 animate-spin' />
+              ) : (
+                <NotebookPen className='h-4 w-4' />
+              )}
+              Register
+            </Link>
           </Button>
-          <Button type='submit' disabled={isPending}>
+          <Button
+            type='submit'
+            disabled={isPending}
+            className='flex items-center gap-2'
+          >
             {isPending ? (
-              <>
-                <Loader2 className='mr-2 h-4 w-4 animate-spin' />
-                Please wait...
-              </>
+              <Loader2 className='h-4 w-4 animate-spin' />
             ) : (
-              'Login'
+              <LogIn className='h-4 w-4' />
             )}
+            Login
           </Button>
         </CardFooter>
       </form>
