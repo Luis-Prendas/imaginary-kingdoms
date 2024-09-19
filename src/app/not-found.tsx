@@ -1,14 +1,7 @@
-import { useTranslations } from 'next-intl'
-
-export const dynamic = 'force-dynamic'
+import { unstable_setRequestLocale } from 'next-intl/server'
 
 export default function NotFound() {
-  const t = useTranslations('NotFound')
+  unstable_setRequestLocale('en')
 
-  return (
-    <div>
-      <h2>{t('title')}</h2>
-      <p>{t('description')}</p>
-    </div>
-  )
+  return <div>Not found</div>
 }
