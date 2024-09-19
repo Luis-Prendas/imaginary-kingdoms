@@ -10,7 +10,7 @@ export default function RootProvider({
     <SessionProvider>
       <ThemeProvider
         attribute='class'
-        defaultTheme='system'
+        defaultTheme='dark'
         enableSystem
         disableTransitionOnChange
       >
