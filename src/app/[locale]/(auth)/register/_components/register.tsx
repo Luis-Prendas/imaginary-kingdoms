@@ -19,50 +19,44 @@ import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { LoginSchema } from '@/lib/zod'
-import { loginAction } from '@/actions/auth-action'
-import { useEffect, useTransition } from 'react'
+import { RegisterSchema } from '@/lib/zod'
+import { registerAction } from '@/actions/auth-action'
+import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
-import { Loader2, LogIn, NotebookPen } from 'lucide-react'
+import { Loader2, NotebookPen } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 import { ToastAction } from '@/components/ui/toast'
-import Link from 'next/link'
-import { useSession } from 'next-auth/react'
+import { useTranslations } from 'next-intl'
 
-export default function Login() {
-  const session = useSession()
+export default function Register() {
+  const t = useTranslations()
   const router = useRouter()
   const { toast } = useToast()
 
-  useEffect(() => {
-    if (session.data) {
-      router.push('/home')
-    }
-  }, [session])
-
   const [isPending, startTransition] = useTransition()
 
-  const form = useForm<z.infer<typeof LoginSchema>>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<z.infer<typeof RegisterSchema>>({
+    resolver: zodResolver(RegisterSchema),
     defaultValues: {
       email: '',
       password: '',
+      username: '',
     },
   })
 
-  const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
+  const onSubmit = async (values: z.infer<typeof RegisterSchema>) => {
     startTransition(async () => {
-      const response = await loginAction(values)
+      const response = await registerAction(values)
       if (response.error) {
         console.log(response.error)
         toast({
           variant: 'destructive',
-          title: 'Uh oh! Something went wrong.',
+          title: t('genericErrorMessage.sommetingWentWrong'),
           description: response.error,
           action: <ToastAction altText='Try again'>Try again</ToastAction>,
         })
       } else {
-        router.replace('/home')
+        router.push('/home')
       }
     })
   }
@@ -71,18 +65,31 @@ export default function Login() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Use your account to log in.</CardDescription>
+          <CardTitle>{t('register.title')}</CardTitle>
+          <CardDescription>{t('register.description')}</CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col gap-4'>
+          <FormField
+            control={form.control}
+            name='username'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('register.username')}</FormLabel>
+                <FormControl>
+                  <Input placeholder={t('register.username')} {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name='email'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>{t('register.email')}</FormLabel>
                 <FormControl>
-                  <Input placeholder='Email' {...field} />
+                  <Input placeholder={t('register.email')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -93,9 +100,13 @@ export default function Login() {
             name='password'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Password</FormLabel>
+                <FormLabel>{t('register.password')}</FormLabel>
                 <FormControl>
-                  <Input type='password' placeholder='Password' {...field} />
+                  <Input
+                    type='password'
+                    placeholder={t('register.password')}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -103,27 +114,17 @@ export default function Login() {
           />
         </CardContent>
         <CardFooter className='flex justify-end gap-4'>
-          <Button asChild disabled={isPending}>
-            <Link href='/register' className='flex items-center gap-2'>
-              {isPending ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <NotebookPen className='h-4 w-4' />
-              )}
-              Register
-            </Link>
-          </Button>
           <Button
             type='submit'
-            disabled={isPending}
             className='flex items-center gap-2'
+            disabled={isPending}
           >
             {isPending ? (
               <Loader2 className='h-4 w-4 animate-spin' />
             ) : (
-              <LogIn className='h-4 w-4' />
+              <NotebookPen className='h-4 w-4' />
             )}
-            Login
+            {t('register.register')}
           </Button>
         </CardFooter>
       </form>

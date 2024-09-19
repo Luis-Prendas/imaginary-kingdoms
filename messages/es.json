@@ -1,0 +1,13 @@
+{
+  "login": {
+    "title": "Iniciar sesión",
+    "description": "Utilice su cuenta para iniciar sesión.",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "login": "Iniciar sesión",
+    "register": "Registrarse"
+  },
+  "genericErrorMessage": {
+    "sommetingWentWrong": "¡Uh oh! Algo salió mal."
+  }
+}

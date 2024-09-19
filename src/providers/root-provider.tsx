@@ -1,3 +1,4 @@
+import LanguageProvider from './language-provider/language-provider'
 import { ThemeProvider } from './theme-provider/theme-provider'
 import { SessionProvider } from 'next-auth/react'
 
@@ -14,7 +15,7 @@ export default function RootProvider({
         enableSystem
         disableTransitionOnChange
       >
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
       </ThemeProvider>
     </SessionProvider>
   )

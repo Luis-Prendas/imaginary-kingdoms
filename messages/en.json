@@ -1,0 +1,24 @@
+{
+  "login": {
+    "title": "Login",
+    "description": "Use your account to log in.",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "register": "Register"
+  },
+  "register": {
+    "title": "Register",
+    "description": "Create your account to log in.",
+    "username": "Username",
+    "email": "Email",
+    "password": "Password",
+    "register": "Register"
+  },
+  "home": {
+    "logout": "Logout"
+  },
+  "genericErrorMessage": {
+    "sommetingWentWrong": "Uh oh! Something went wrong."
+  }
+}

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: 'A place where you can create your own imaginary kingdoms.',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
