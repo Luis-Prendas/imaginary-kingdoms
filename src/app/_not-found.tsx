@@ -1,23 +1,14 @@
-import { unstable_setRequestLocale } from 'next-intl/server'
+import { useTranslations } from 'next-intl';
 
-interface NotFoundParams {
-  locale: string
-}
+export const dynamic = 'force-dynamic';
 
-export default function NotFound({
-  params: { locale },
-}: {
-  params: NotFoundParams
-}) {
-  unstable_setRequestLocale(locale)
+export default function NotFound() {
+  const t = useTranslations('NotFound');
 
   return (
     <div>
-      <h1>404 - Página no encontrada</h1>
-      {/* ... resto del contenido ... */}
+      <h2>{t('title')}</h2>
+      <p>{t('description')}</p>
     </div>
-  )
+  );
 }
-
-// Alternativamente, si prefieres renderizado dinámico, puedes usar esto en lugar de unstable_setRequestLocale:
-// export const dynamic = 'force-dynamic';
