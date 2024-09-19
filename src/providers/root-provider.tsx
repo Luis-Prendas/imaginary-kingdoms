@@ -1,3 +1,4 @@
+import { Toaster } from '@/components/ui/toaster'
 import LanguageProvider from './language-provider/language-provider'
 import { ThemeProvider } from './theme-provider/theme-provider'
 import { SessionProvider } from 'next-auth/react'
@@ -17,6 +18,7 @@ export default function RootProvider({
       >
         <LanguageProvider>{children}</LanguageProvider>
       </ThemeProvider>
+      <Toaster />
     </SessionProvider>
   )
 }

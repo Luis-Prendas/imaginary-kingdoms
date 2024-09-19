@@ -57,14 +57,13 @@ export default function Login() {
   const onSubmit = async (values: z.infer<typeof LoginSchema>) => {
     startTransition(async () => {
       const response = await loginAction(values)
-      if (response.error) {
-        console.log(response.error)
+      if (response.error && response.status === 'error') {
         toast({
           variant: 'destructive',
           title: t('genericErrorMessage.sommetingWentWrong'),
           description: response.error,
-          action: <ToastAction altText='Try again'>Try again</ToastAction>,
         })
+        console.error(response.error)
       } else {
         router.replace(`/${locale}/home`)
       }
