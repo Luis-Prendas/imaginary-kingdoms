@@ -9,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function RegisterPage() {
   return (
-    <main className='flex justify-center items-center h-full w-full'>
-      <Card className='w-[350px]'>
-        <Register />
-      </Card>
-    </main>
+    <Card className='w-[350px]'>
+      <Register />
+    </Card>
   )
 }

@@ -20,5 +20,12 @@
   },
   "genericErrorMessage": {
     "sommetingWentWrong": "Uh oh! Something went wrong."
+  },
+  "sidebar": {
+    "generalInformation": {
+      "generalInformation": "General Information",
+      "introduction": "Introduction",
+      "regionOfPourtas": "Region of Pourtas"
+    }
   }
 }
