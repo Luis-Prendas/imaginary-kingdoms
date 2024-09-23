@@ -48,7 +48,7 @@ export default function Register() {
     startTransition(async () => {
       const response = await registerAction(values)
       if (response.error) {
-        console.log(response.error)
+        console.error(response.error)
         toast({
           variant: 'destructive',
           title: t('genericErrorMessage.sommetingWentWrong'),
