@@ -17,7 +17,11 @@ export function Sidebar({ className }: { className?: string }) {
             </h2>
             <div className='space-y-1'>
               {menuOption.options.map((option) => (
-                <Button asChild variant='ghost' className='w-full justify-start gap-2'>
+                <Button
+                  asChild
+                  variant='ghost'
+                  className='w-full justify-start gap-2'
+                >
                   <Link href={option.href}>
                     {option.icon}
                     {option.label}
