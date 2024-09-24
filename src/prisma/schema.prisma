@@ -19,6 +19,7 @@ model User {
   emailVerified DateTime?
   image         String?
   accounts      Account[]
+  Rooms         Room[]
   password      String?
   role          Role      @default(USER)
 
@@ -55,18 +56,18 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
-// // Optional for WebAuthn support
-// model Authenticator {
-//   credentialID         String  @unique
-//   userId               String
-//   providerAccountId    String
-//   credentialPublicKey  String
-//   counter              Int
-//   credentialDeviceType String
-//   credentialBackedUp   Boolean
-//   transports           String?
+// Game rooms model
+model Room {
+  id          String  @id @default(cuid())
+  name        String
+  description String
+  limit       Int
+  isActive    Boolean @default(true)
+  isPublic    Boolean @default(true)
+  ownerId     String
 
-//   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-//   @@id([userId, credentialID])
-// }
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}

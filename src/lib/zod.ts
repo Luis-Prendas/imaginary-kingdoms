@@ -1,4 +1,4 @@
-import { object, string } from 'zod'
+import { number, object, string } from 'zod'
 
 export const LoginSchema = object({
   email: string({ required_error: 'Email is required' })
@@ -21,4 +21,16 @@ export const RegisterSchema = object({
   username: string({ required_error: 'Username is required' })
     .min(1, 'Username is required')
     .max(32, 'Username must be less than 32 characters'),
+})
+
+export const RoomSchema = object({
+  name: string({ required_error: 'Name is required' })
+    .min(1, 'Name is required')
+    .max(32, 'Name must be less than 32 characters'),
+  description: string({ required_error: 'Description is required' })
+    .min(1, 'Description is required')
+    .max(255, 'Description must be less than 255 characters'),
+  limit: number({ required_error: 'Limit is required' })
+    .min(1, 'Limit is required')
+    .max(5, 'Limit must be less than 100 characters'),
 })
