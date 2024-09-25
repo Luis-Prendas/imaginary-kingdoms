@@ -16,10 +16,21 @@
     "register": "Register"
   },
   "home": {
-    "logout": "Logout"
+    "logout": "Logout",
+    "rooms": {
+      "title": "Create a room",
+      "roomName": "Room name",
+      "description": "Description",
+      "limit": "Limit",
+      "create": "Create"
+    }
   },
   "genericErrorMessage": {
     "sommetingWentWrong": "Uh oh! Something went wrong."
+  },
+  "genericSuccessMessage": {
+    "success": "Success!",
+    "theRoomWasCreated": "the room was created successfully."
   },
   "sidebar": {
     "generalInformation": {
