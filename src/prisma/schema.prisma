@@ -13,15 +13,16 @@ enum Role {
 }
 
 model User {
-  id            String    @id @default(cuid())
-  name          String?
-  email         String    @unique
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  Rooms         Room[]
-  password      String?
-  role          Role      @default(USER)
+  id              String           @id @default(cuid())
+  name            String?
+  email           String           @unique
+  emailVerified   DateTime?
+  image           String?
+  accounts        Account[]
+  Rooms           Room[]
+  characterSheets CharacterSheet[]
+  password        String?
+  role            Role             @default(USER)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -48,14 +49,6 @@ model Account {
   @@id([provider, providerAccountId])
 }
 
-model VerificationToken {
-  identifier String
-  token      String
-  expires    DateTime
-
-  @@id([identifier, token])
-}
-
 // Game rooms model
 model Room {
   id          String  @id @default(cuid())
@@ -68,6 +61,60 @@ model Room {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+// Character sheet
+model CharacterSheet {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  level       String
+  raza        String
+  clase       String
+  xp          String?
+  ownerId     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Stats
+  strength     Int @default(0)
+  dexterity    Int @default(0)
+  constitution Int @default(0)
+  intelligence Int @default(0)
+  wisdom       Int @default(0)
+  charisma     Int @default(0)
+
+  // Savings Thorows
+  autoCalculateSavingsThorows Boolean @default(true)
+  savingStrength              Int     @default(0)
+  savingDexterity             Int     @default(0)
+  savingConstitution          Int     @default(0)
+  savingIntelligence          Int     @default(0)
+  savingWisdom                Int     @default(0)
+  savingCharisma              Int     @default(0)
+
+  // Skills
+  autoCalculateSkills Boolean @default(true)
+  acrobatics          Int     @default(0)
+  animalHandling      Int     @default(0)
+  arcana              Int     @default(0)
+  athletics           Int     @default(0)
+  deception           Int     @default(0)
+  history             Int     @default(0)
+  insight             Int     @default(0)
+  intimidation        Int     @default(0)
+  investigation       Int     @default(0)
+  medicine            Int     @default(0)
+  nature              Int     @default(0)
+  perception          Int     @default(0)
+  performance         Int     @default(0)
+  persuasion          Int     @default(0)
+  religion            Int     @default(0)
+  sleightOfHand       Int     @default(0)
+  stealth             Int     @default(0)
+  survival            Int     @default(0)
 
   owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
