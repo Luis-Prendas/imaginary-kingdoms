@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
-    <Card className='w-[350px]'>
+    <Card className='w-[350px] bg-[#fffbdd] text-[#530800]'>
       <Login />
     </Card>
   )

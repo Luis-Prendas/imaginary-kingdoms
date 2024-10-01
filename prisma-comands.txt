@@ -1,3 +1,5 @@
 Prisma Generate: npx prisma generate --schema ./src/prisma/schema.prisma
 
 Prisma DB push: npx prisma db push --schema ./src/prisma/schema.prisma
+
+Prisma studio: npx prisma studio --schema ./src/prisma/schema.prisma

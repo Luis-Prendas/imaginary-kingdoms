@@ -65,7 +65,7 @@ export default function Login() {
         })
         console.error(response.error)
       } else {
-        router.replace(`/${locale}/home`)
+        router.replace(`/`)
       }
     })
   }
@@ -75,7 +75,6 @@ export default function Login() {
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <CardHeader>
           <CardTitle>{t('login.title')}</CardTitle>
-          <CardDescription>{t('login.description')}</CardDescription>
         </CardHeader>
         <CardContent className='flex flex-col gap-4'>
           <FormField
@@ -110,23 +109,10 @@ export default function Login() {
           />
         </CardContent>
         <CardFooter className='flex justify-end gap-4'>
-          <Button asChild disabled={isPending}>
-            <Link
-              href={`/${locale}/register`}
-              className='flex items-center gap-2'
-            >
-              {isPending ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <NotebookPen className='h-4 w-4' />
-              )}
-              {t('login.register')}
-            </Link>
-          </Button>
           <Button
             type='submit'
             disabled={isPending}
-            className='flex items-center gap-2'
+            className='flex items-center gap-2 text-[#530800] bg-transparent outline outline-1 outline-[#530800]'
           >
             {isPending ? (
               <Loader2 className='h-4 w-4 animate-spin' />

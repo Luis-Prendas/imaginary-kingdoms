@@ -24,7 +24,7 @@ export default function ButtonLogout({ ...props }) {
       {...props}
       disabled={isPending}
       onClick={handleClick}
-      className='flex items-center gap-2'
+      className='flex items-center gap-2 absolute top-4 right-4'
     >
       {isPending ? (
         <Loader2 className='h-4 w-4 animate-spin' />

@@ -1,4 +1,4 @@
-import Nav from '@/components/layout/nav'
+import ButtonLogout from '@/components/buttoms/button-logout'
 
 export default function ProtectedLayout({
   children,
@@ -7,12 +7,9 @@ export default function ProtectedLayout({
 }) {
   return (
     <div className='flex justify-center items-center h-full w-full bg-[#ffa455] text-[#530800]'>
+      <ButtonLogout />
       <main className='h-full w-full flex justify-center items-center'>
-        {/* <Nav /> */}
-        <div className='w-full h-full outline outline-1 outline-zinc-700 z-10'>
-          {children}
-        </div>
-        {/* <aside className='w-[350px] h-full bg-zinc-900'>aside</aside> */}
+        {children}
       </main>
     </div>
   )
