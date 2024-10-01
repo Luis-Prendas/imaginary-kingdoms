@@ -1,11 +1,16 @@
 import Logo from '@/components/ui/logo'
 import { Separator } from '@/components/ui/separator'
+import { useState } from 'react'
 
 interface Props {
   lockSheet: boolean
 }
 
 export default function SheetBodyHeader({ lockSheet }: Props) {
+  const [razaSelected, setRazaSelected] = useState<string>('Enano')
+  const [classSelected, setClassSelected] = useState<string>('Bárbaro')
+  const [levelSelected, setLevelSelected] = useState<string>('Level 0')
+
   return (
     <header className='flex flex-col w-full'>
       <div className='flex justify-between'>
@@ -18,38 +23,98 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
             placeholder='Character name...'
             className='bg-transparent text-4xl font-bold'
             disabled={lockSheet}
+            maxLength={20}
           />
           <input
             type='text'
-            name='characer-sheet-name'
-            id='characer-sheet-name'
+            name='characer-sheet-description'
+            id='characer-sheet-description'
             defaultValue='Hill Dwarf Far Traveler'
             placeholder='Character description...'
             className='bg-transparent'
             disabled={lockSheet}
+            maxLength={45}
           />
           <div className='flex gap-2'>
-            <select className='bg-transparent appearance-none flex justify-center items-center' disabled={lockSheet}>
-              <option value='Enano'>Enano</option>
-              <option value='Elfo'>Elfo</option>
-              <option value='Mediano'>Mediano</option>
-              <option value='Humano'>Humano</option>
-              <option value='Dracónido'>Dracónido</option>
-              <option value='Gnomo'>Gnomo</option>
-              <option value='Semielfo'>Semielfo</option>
-              <option value='Semiorco'>Semiorco</option>
-              <option value='Tiefling'>Tiefling</option>
-            </select>
+            {lockSheet ? (
+              <p>{razaSelected}</p>
+            ) : (
+              <select
+                className='bg-transparent appearance-none flex justify-center items-center'
+                onChange={(e) => setRazaSelected(e.target.value)}
+              >
+                <option value='' hidden>
+                  {razaSelected}
+                </option>
+                <option value='Enano'>Enano</option>
+                <option value='Elfo'>Elfo</option>
+                <option value='Mediano'>Mediano</option>
+                <option value='Humano'>Humano</option>
+                <option value='Dracónido'>Dracónido</option>
+                <option value='Gnomo'>Gnomo</option>
+                <option value='Semielfo'>Semielfo</option>
+                <option value='Semiorco'>Semiorco</option>
+                <option value='Tiefling'>Tiefling</option>
+              </select>
+            )}
             <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
-            <p>Druid</p>
+            {lockSheet ? (
+              <p>{classSelected}</p>
+            ) : (
+              <select
+                className='bg-transparent appearance-none flex justify-center items-center'
+                onChange={(e) => setClassSelected(e.target.value)}
+              >
+                <option value='' hidden>
+                  {classSelected}
+                </option>
+                <option value='Bárbaro'>Bárbaro</option>
+                <option value='Bardo'>Bardo</option>
+                <option value='Brujo'>Brujo</option>
+                <option value='Clérigo'>Clérigo</option>
+                <option value='Druida'>Druida</option>
+                <option value='Explorador'>Explorador</option>
+                <option value='Guerrero'>Guerrero</option>
+                <option value='Hechicero'>Hechicero</option>
+                <option value='Mago'>Mago</option>
+                <option value='Monje'>Monje</option>
+                <option value='Paladín'>Paladín</option>
+                <option value='Pícaro'>Pícaro</option>
+              </select>
+            )}
             <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
-            <p>
-              Level <span>4</span>
-            </p>
-            <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
-            <p>
-              <strong>XP</strong> <span> 0 / 6,500</span>
-            </p>
+            {lockSheet ? (
+              <p>{levelSelected}</p>
+            ) : (
+              <select
+                className='bg-transparent appearance-none flex justify-center items-center'
+                onChange={(e) => setLevelSelected(e.target.value)}
+              >
+                <option value='' hidden>
+                  {levelSelected}
+                </option>
+                <option value='Level 1'>Level 1</option>
+                <option value='Level 2'>Level 2</option>
+                <option value='Level 3'>Level 3</option>
+                <option value='Level 4'>Level 4</option>
+                <option value='Level 5'>Level 5</option>
+                <option value='Level 6'>Level 6</option>
+                <option value='Level 7'>Level 7</option>
+                <option value='Level 8'>Level 8</option>
+                <option value='Level 9'>Level 9</option>
+                <option value='Level 10'>Level 10</option>
+                <option value='Level 11'>Level 11</option>
+                <option value='Level 12'>Level 12</option>
+                <option value='Level 13'>Level 13</option>
+                <option value='Level 14'>Level 14</option>
+                <option value='Level 15'>Level 15</option>
+                <option value='Level 16'>Level 16</option>
+                <option value='Level 17'>Level 17</option>
+                <option value='Level 18'>Level 18</option>
+                <option value='Level 19'>Level 19</option>
+                <option value='Level 20'>Level 20</option>
+              </select>
+            )}
           </div>
         </section>
         <section className='flex w-20 justify-end'>
