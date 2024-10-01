@@ -1,8 +1,14 @@
-export default function Logo({ className }: { className?: string }) {
+export default function Logo({
+  className,
+  fill = '#d4d4d8',
+}: {
+  className?: string
+  fill?: string
+}) {
   return (
     <svg
       className={className}
-      fill='#d4d4d8'
+      fill={fill}
       viewBox='-16 0 512 512'
       xmlns='http://www.w3.org/2000/svg'
       transform='matrix(-1, 0, 0, 1, 0, 0)rotate(0)'
