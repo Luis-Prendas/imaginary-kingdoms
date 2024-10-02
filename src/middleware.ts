@@ -31,10 +31,7 @@ export default auth((req) => {
   }
 
   // Redirect to /home if the user is logged in and tries to access auth routes
-  if (
-    isLoggedIn &&
-    authRoutes.some((route) => nextUrl.pathname.endsWith(route))
-  ) {
+  if (isLoggedIn && authRoutes.some((route) => nextUrl.pathname.endsWith(route))) {
     return NextResponse.redirect(new URL(`/${locale}/home`, nextUrl))
   }
 

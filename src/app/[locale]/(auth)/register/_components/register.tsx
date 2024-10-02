@@ -102,11 +102,7 @@ export default function Register() {
               <FormItem>
                 <FormLabel>{t('register.password')}</FormLabel>
                 <FormControl>
-                  <Input
-                    type='password'
-                    placeholder={t('register.password')}
-                    {...field}
-                  />
+                  <Input type='password' placeholder={t('register.password')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -114,11 +110,7 @@ export default function Register() {
           />
         </CardContent>
         <CardFooter className='flex justify-end gap-4'>
-          <Button
-            type='submit'
-            className='flex items-center gap-2'
-            disabled={isPending}
-          >
+          <Button type='submit' className='flex items-center gap-2' disabled={isPending}>
             {isPending ? (
               <Loader2 className='h-4 w-4 animate-spin' />
             ) : (

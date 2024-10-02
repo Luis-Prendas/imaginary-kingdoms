@@ -97,11 +97,7 @@ export default function Login() {
               <FormItem>
                 <FormLabel>{t('login.password')}</FormLabel>
                 <FormControl>
-                  <Input
-                    type='password'
-                    placeholder={t('login.password')}
-                    {...field}
-                  />
+                  <Input type='password' placeholder={t('login.password')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

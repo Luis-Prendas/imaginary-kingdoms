@@ -1,15 +1,15 @@
 import Logo from '@/components/ui/logo'
 import { Separator } from '@/components/ui/separator'
-import { useState } from 'react'
+import { useSheetStore } from '@/store/sheetStore'
+import { CharacterSheet } from '@prisma/client'
+import { useEffect, useState } from 'react'
 
 interface Props {
   lockSheet: boolean
 }
 
 export default function SheetBodyHeader({ lockSheet }: Props) {
-  const [razaSelected, setRazaSelected] = useState<string>('Enano')
-  const [classSelected, setClassSelected] = useState<string>('Bárbaro')
-  const [levelSelected, setLevelSelected] = useState<string>('Level 0')
+  const { sheet } = useSheetStore()
 
   return (
     <header className='flex flex-col w-full'>
@@ -19,32 +19,35 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
             type='text'
             name='characer-sheet-name'
             id='characer-sheet-name'
-            defaultValue='Travok Bofdann'
             placeholder='Character name...'
             className='bg-transparent text-4xl font-bold'
+            defaultValue={sheet?.name}
+            // onChange={(e) => setCharacterName(e.target.value)}
             disabled={lockSheet}
             maxLength={20}
           />
-          <input
-            type='text'
-            name='characer-sheet-description'
-            id='characer-sheet-description'
-            defaultValue='Hill Dwarf Far Traveler'
-            placeholder='Character description...'
-            className='bg-transparent'
-            disabled={lockSheet}
-            maxLength={45}
-          />
+          {sheet?.description && (
+            <input
+              type='text'
+              name='characer-sheet-description'
+              id='characer-sheet-description'
+              placeholder='Character description...'
+              className='bg-transparent'
+              defaultValue={sheet?.description}
+              disabled={lockSheet}
+              maxLength={45}
+            />
+          )}
           <div className='flex gap-2'>
             {lockSheet ? (
-              <p>{razaSelected}</p>
+              <p>{sheet?.raza}</p>
             ) : (
               <select
                 className='bg-transparent appearance-none flex justify-center items-center'
-                onChange={(e) => setRazaSelected(e.target.value)}
+                // onChange={(e) => setRazaSelected(e.target.value)}
               >
                 <option value='' hidden>
-                  {razaSelected}
+                  {sheet?.raza}
                 </option>
                 <option value='Enano'>Enano</option>
                 <option value='Elfo'>Elfo</option>
@@ -59,14 +62,14 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
             )}
             <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
             {lockSheet ? (
-              <p>{classSelected}</p>
+              <p>{sheet?.clase}</p>
             ) : (
               <select
                 className='bg-transparent appearance-none flex justify-center items-center'
-                onChange={(e) => setClassSelected(e.target.value)}
+                // onChange={(e) => setClassSelected(e.target.value)}
               >
                 <option value='' hidden>
-                  {classSelected}
+                  {sheet?.clase}
                 </option>
                 <option value='Bárbaro'>Bárbaro</option>
                 <option value='Bardo'>Bardo</option>
@@ -84,14 +87,14 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
             )}
             <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
             {lockSheet ? (
-              <p>{levelSelected}</p>
+              <p>{sheet?.level}</p>
             ) : (
               <select
                 className='bg-transparent appearance-none flex justify-center items-center'
-                onChange={(e) => setLevelSelected(e.target.value)}
+                // onChange={(e) => setLevelSelected(e.target.value)}
               >
                 <option value='' hidden>
-                  {levelSelected}
+                  {sheet?.level}
                 </option>
                 <option value='Level 1'>Level 1</option>
                 <option value='Level 2'>Level 2</option>

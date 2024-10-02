@@ -73,10 +73,22 @@ model CharacterSheet {
   level       String
   raza        String
   clase       String
-  xp          String?
   ownerId     String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  // Detaills
+  size              String @default("1.70m")
+  speed             String @default("25tf")
+  senses            String @default("Normalvision 60ft")
+  languages         String @default("Common")
+  passivePerception Int    @default(0)
+  proficiencyBonus  Int    @default(0)
+  armorClass        Int    @default(0)
+  initiative        Int    @default(0)
+  hitPoints         Int    @default(0)
+  currentHitPoints  Int    @default(0)
+  tempHitPoints     Int    @default(0)
 
   // Stats
   strength     Int @default(0)

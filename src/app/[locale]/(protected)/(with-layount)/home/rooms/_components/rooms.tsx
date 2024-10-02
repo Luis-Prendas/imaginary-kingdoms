@@ -87,10 +87,7 @@ export default function Rooms() {
                 <FormItem>
                   <FormLabel>{t('home.rooms.description')}</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder={t('home.rooms.description')}
-                      {...field}
-                    />
+                    <Input placeholder={t('home.rooms.description')} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -107,9 +104,7 @@ export default function Rooms() {
                       type='number'
                       placeholder={t('home.rooms.limit')}
                       {...field}
-                      onChange={(e) =>
-                        field.onChange(parseInt(e.target.value, 10))
-                      }
+                      onChange={(e) => field.onChange(parseInt(e.target.value, 10))}
                     />
                   </FormControl>
                   <FormMessage />
@@ -118,11 +113,7 @@ export default function Rooms() {
             />
           </CardContent>
           <CardFooter className='flex justify-end gap-4'>
-            <Button
-              type='submit'
-              className='flex items-center gap-2'
-              disabled={isPending}
-            >
+            <Button type='submit' className='flex items-center gap-2' disabled={isPending}>
               {isPending ? (
                 <Loader2 className='h-4 w-4 animate-spin' />
               ) : (
