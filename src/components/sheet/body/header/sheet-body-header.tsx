@@ -164,10 +164,8 @@ export default function SheetBodyHeader() {
             name='characer-sheet-ac'
             id='characer-sheet-ac'
             className='bg-transparent w-7 text-center'
-            onChange={(e) => {
-              handleChangeFielNumber({ field: 'armorClass', newValue: e.target.value })
-            }}
-            defaultValue={sheet?.armorClass}
+            onChange={(e) => handleChangeFielNumber({ field: 'armorClass', newValue: e.target.value })}
+            value={sheet?.armorClass}
             disabled={enableEdit}
             maxLength={2}
           />
@@ -177,7 +175,16 @@ export default function SheetBodyHeader() {
           <strong>{t('sheet.initiative')}</strong>
           <div className='flex gap-2'>
             <Logo className='w-5 h-5' fill='#530800' />
-            <span>{sheet?.initiative}</span>
+            <input
+              type='text'
+              name='characer-sheet-initiative'
+              id='characer-sheet-initiative'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => handleChangeFielNumber({ field: 'initiative', newValue: e.target.value })}
+              value={sheet?.initiative}
+              disabled={enableEdit}
+              maxLength={2}
+            />
           </div>
         </div>
         <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
@@ -261,17 +268,15 @@ export default function SheetBodyHeader() {
               name='characer-sheet-stats-dex'
               id='characer-sheet-stats-dex'
               className='bg-transparent w-7 text-center'
-              onChange={(e) => {
-                handleChangeFielNumber({ field: 'dexterity', newValue: e.target.value })
-              }}
+              onChange={(e) => handleChangeStatFiel({ field: 'dexterity', newValue: e.target.value })}
               defaultValue={sheet?.dexterity}
               disabled={enableEdit}
               maxLength={2}
             />
-            {sheet?.dexterity! >= 10 ? (
-              <strong className='text-green-600'>(+{Math.floor((sheet?.dexterity! - 10) / 2)})</strong>
+            {sheet?.dexterityMod! >= 0 ? (
+              <strong className='text-green-600'>(+{sheet?.dexterityMod})</strong>
             ) : (
-              <strong className='text-red-600'>({Math.floor((sheet?.dexterity! - 10) / 2)})</strong>
+              <strong className='text-red-600'>({sheet?.dexterityMod})</strong>
             )}
           </span>
         </div>
@@ -284,17 +289,15 @@ export default function SheetBodyHeader() {
               name='characer-sheet-stats-con'
               id='characer-sheet-stats-con'
               className='bg-transparent w-7 text-center'
-              onChange={(e) => {
-                handleChangeFielNumber({ field: 'constitution', newValue: e.target.value })
-              }}
+              onChange={(e) => handleChangeStatFiel({ field: 'constitution', newValue: e.target.value })}
               defaultValue={sheet?.constitution}
               disabled={enableEdit}
               maxLength={2}
             />
-            {sheet?.constitution! >= 10 ? (
-              <strong className='text-green-600'>(+{Math.floor((sheet?.constitution! - 10) / 2)})</strong>
+            {sheet?.constitutionMod! >= 0 ? (
+              <strong className='text-green-600'>(+{sheet?.constitutionMod})</strong>
             ) : (
-              <strong className='text-red-600'>({Math.floor((sheet?.constitution! - 10) / 2)})</strong>
+              <strong className='text-red-600'>({sheet?.constitutionMod})</strong>
             )}
           </span>
         </div>
@@ -307,17 +310,15 @@ export default function SheetBodyHeader() {
               name='characer-sheet-stats-int'
               id='characer-sheet-stats-int'
               className='bg-transparent w-7 text-center'
-              onChange={(e) => {
-                handleChangeFielNumber({ field: 'intelligence', newValue: e.target.value })
-              }}
+              onChange={(e) => handleChangeStatFiel({ field: 'intelligence', newValue: e.target.value })}
               defaultValue={sheet?.intelligence}
               disabled={enableEdit}
               maxLength={2}
             />
-            {sheet?.intelligence! >= 10 ? (
-              <strong className='text-green-600'>(+{Math.floor((sheet?.intelligence! - 10) / 2)})</strong>
+            {sheet?.intelligenceMod! >= 0 ? (
+              <strong className='text-green-600'>(+{sheet?.intelligenceMod})</strong>
             ) : (
-              <strong className='text-red-600'>({Math.floor((sheet?.intelligence! - 10) / 2)})</strong>
+              <strong className='text-red-600'>({sheet?.intelligenceMod})</strong>
             )}
           </span>
         </div>
@@ -330,17 +331,15 @@ export default function SheetBodyHeader() {
               name='characer-sheet-stats-wis'
               id='characer-sheet-stats-wis'
               className='bg-transparent w-7 text-center'
-              onChange={(e) => {
-                handleChangeFielNumber({ field: 'wisdom', newValue: e.target.value })
-              }}
+              onChange={(e) => handleChangeStatFiel({ field: 'wisdom', newValue: e.target.value })}
               defaultValue={sheet?.wisdom}
               disabled={enableEdit}
               maxLength={2}
             />
-            {sheet?.wisdom! >= 10 ? (
-              <strong className='text-green-600'>(+{Math.floor((sheet?.wisdom! - 10) / 2)})</strong>
+            {sheet?.wisdomMod! >= 0 ? (
+              <strong className='text-green-600'>(+{sheet?.wisdomMod})</strong>
             ) : (
-              <strong className='text-red-600'>({Math.floor((sheet?.wisdom! - 10) / 2)})</strong>
+              <strong className='text-red-600'>({sheet?.wisdomMod})</strong>
             )}
           </span>
         </div>
@@ -353,17 +352,15 @@ export default function SheetBodyHeader() {
               name='characer-sheet-stats-cha'
               id='characer-sheet-stats-cha'
               className='bg-transparent w-7 text-center'
-              onChange={(e) => {
-                handleChangeFielNumber({ field: 'charisma', newValue: e.target.value })
-              }}
+              onChange={(e) => handleChangeStatFiel({ field: 'charisma', newValue: e.target.value })}
               defaultValue={sheet?.charisma}
               disabled={enableEdit}
               maxLength={2}
             />
-            {sheet?.charisma! >= 10 ? (
-              <strong className='text-green-600'>(+{Math.floor((sheet?.charisma! - 10) / 2)})</strong>
+            {sheet?.charismaMod! >= 0 ? (
+              <strong className='text-green-600'>(+{sheet?.charismaMod})</strong>
             ) : (
-              <strong className='text-red-600'>({Math.floor((sheet?.charisma! - 10) / 2)})</strong>
+              <strong className='text-red-600'>({sheet?.charismaMod})</strong>
             )}
           </span>
         </div>
@@ -385,42 +382,62 @@ export default function SheetBodyHeader() {
               {sheet && sheet.savingStrength >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingStrength}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+                <strong className='text-red-600'>{sheet?.savingStrength}</strong>
               )}
             </span>
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
+              <Checkbox
+                className='bg-[#530800]'
+                defaultChecked={sheet?.competenceDexterity}
+                onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceDexterity', newValue: e })}
+              />
               {t('sheet.savingsThorows.dex')}
               {sheet && sheet.savingDexterity >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingDexterity}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+                <strong className='text-red-600'>{sheet?.savingDexterity}</strong>
               )}
             </span>
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
+              <Checkbox
+                className='bg-[#530800]'
+                defaultChecked={sheet?.competenceConstitution}
+                onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceConstitution', newValue: e })}
+              />
               {t('sheet.savingsThorows.con')}
               {sheet && sheet.savingConstitution >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingConstitution}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+                <strong className='text-red-600'>-{sheet?.savingConstitution}</strong>
               )}
             </span>
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
+              <Checkbox
+                className='bg-[#530800]'
+                defaultChecked={sheet?.competenceIntelligence}
+                onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceIntelligence', newValue: e })}
+              />
               {t('sheet.savingsThorows.int')}
               {sheet && sheet.savingIntelligence >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingIntelligence}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+                <strong className='text-red-600'>-{sheet?.savingIntelligence}</strong>
               )}
             </span>
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
+              <Checkbox
+                className='bg-[#530800]'
+                defaultChecked={sheet?.competenceWisdom}
+                onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceWisdom', newValue: e })}
+              />
               {t('sheet.savingsThorows.wis')}
               {sheet && sheet.savingWisdom >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingWisdom}</strong>
@@ -431,6 +448,11 @@ export default function SheetBodyHeader() {
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
+              <Checkbox
+                className='bg-[#530800]'
+                defaultChecked={sheet?.competenceCharisma}
+                onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceCharisma', newValue: e })}
+              />
               {t('sheet.savingsThorows.cha')}
               {sheet && sheet.savingCharisma >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingCharisma}</strong>

@@ -56,17 +56,67 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
   },
   async calculateStats() {
     const currentSheet = get().sheet as Sheet
+    const {
+      proficiencyBonus,
+      strength,
+      competenceStrength,
+      dexterity,
+      competenceDexterity,
+      constitution,
+      competenceConstitution,
+      intelligence,
+      competenceIntelligence,
+      wisdom,
+      competenceWisdom,
+      charisma,
+      competenceCharisma,
+    } = currentSheet
 
-    // Upgrade related to strength
-    const { strength, competenceStrength, proficiencyBonus } = currentSheet
+    // Update related to strength
     const strengthMod = Math.floor((strength - 10) / 2)
     const savingStrength = competenceStrength ? strengthMod + proficiencyBonus : strengthMod
 
+    // Update related to dexterity
+    const dexterityMod = Math.floor((dexterity - 10) / 2)
+    const savingDexterity = competenceDexterity ? dexterityMod + proficiencyBonus : dexterityMod
+    const armorClass = dexterityMod + 10
+    const initiative = dexterityMod
+
+    // Update related to constitution
+    const constitutionMod = Math.floor((constitution - 10) / 2)
+    const savingConstitution = competenceConstitution ? constitutionMod + proficiencyBonus : constitutionMod
+
+    // Update related to intelligence
+    const intelligenceMod = Math.floor((intelligence - 10) / 2)
+    const savingIntelligence = competenceIntelligence ? intelligenceMod + proficiencyBonus : intelligenceMod
+
+    // Update related to wisdom
+    const wisdomMod = Math.floor((wisdom - 10) / 2)
+    const savingWisdom = competenceWisdom ? wisdomMod + proficiencyBonus : wisdomMod
+
+    // Update related to charisma
+    const charismaMod = Math.floor((charisma - 10) / 2)
+    const savingCharisma = competenceCharisma ? charismaMod + proficiencyBonus : charismaMod
+
+    console.log(armorClass)
+    
     // Update Sheet
     const updatedSheet = {
       ...currentSheet,
       strengthMod,
       savingStrength,
+      dexterityMod,
+      savingDexterity,
+      constitutionMod,
+      savingConstitution,
+      intelligenceMod,
+      savingIntelligence,
+      wisdomMod,
+      savingWisdom,
+      charismaMod,
+      savingCharisma,
+      armorClass,
+      initiative,
     }
     set({ sheet: updatedSheet })
   },

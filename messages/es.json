@@ -28,9 +28,9 @@
   "sheet": {
     "save": "Guardar",
     "successSaveMessage": "Se guardaron los cambios correctamente.",
-    "characerSheet": "Hoja de personaje",
-    "characerName": "Nombre del personaje",
-    "characerDescription": "Descripción del personaje",
+    "characterSheet": "Hoja de personaje",
+    "characterName": "Nombre del personaje",
+    "characterDescription": "Descripción del personaje",
     "armorClass": "Clase de armadura",
     "initiative": "Iniciativa",
     "hitPoints": "HP",
@@ -49,8 +49,17 @@
       "charisma": "Carisma",
       "cha": "CAR"
     },
+    "savingsThorows": {
+      "savingsThorows": "Salvación",
+      "str": "Fue",
+      "dex": "Des",
+      "con": "Con",
+      "int": "Int",
+      "wis": "Sab",
+      "cha": "Car"
+    },
     "details": {
-      "size": "Tamaño",
+      "size": "Estatura",
       "speed": "Velocidad",
       "senses": "Sentidos",
       "languages": "Idiomas",
