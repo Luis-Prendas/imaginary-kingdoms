@@ -2,21 +2,8 @@
 
 import { createRoomAction } from '@/actions/room-actions'
 import { Button } from '@/components/ui/button'
-import {
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
+import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
 import { RoomSchema } from '@/lib/zod'
@@ -114,11 +101,7 @@ export default function Rooms() {
           </CardContent>
           <CardFooter className='flex justify-end gap-4'>
             <Button type='submit' className='flex items-center gap-2' disabled={isPending}>
-              {isPending ? (
-                <Loader2 className='h-4 w-4 animate-spin' />
-              ) : (
-                <NotebookPen className='h-4 w-4' />
-              )}
+              {isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <NotebookPen className='h-4 w-4' />}
               {t('home.rooms.create')}
             </Button>
           </CardFooter>

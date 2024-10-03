@@ -1,20 +1,7 @@
 'use client'
-import {
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
@@ -110,11 +97,7 @@ export default function Login() {
             disabled={isPending}
             className='flex items-center gap-2 text-[#530800] bg-transparent outline outline-1 outline-[#530800]'
           >
-            {isPending ? (
-              <Loader2 className='h-4 w-4 animate-spin' />
-            ) : (
-              <LogIn className='h-4 w-4' />
-            )}
+            {isPending ? <Loader2 className='h-4 w-4 animate-spin' /> : <LogIn className='h-4 w-4' />}
             {t('login.login')}
           </Button>
         </CardFooter>

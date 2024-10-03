@@ -25,6 +25,74 @@
       "create": "Create"
     }
   },
+  "sheet": {
+    "save": "Save",
+    "successSaveMessage": "The sheet was saved successfully.",
+    "characerSheet": "Character sheet",
+    "characerName": "Character name",
+    "characerDescription": "Character description",
+    "level": {
+      "levell": "Leve l",
+      "level1": "Level 1",
+      "level2": "Level 2",
+      "level3": "Level 3",
+      "level4": "Level 4",
+      "level5": "Level 5",
+      "level6": "Level 6",
+      "level7": "Level 7",
+      "level8": "Level 8",
+      "level9": "Level 9",
+      "level10": "Level 10",
+      "level11": "Level 11",
+      "level12": "Level 12",
+      "level13": "Level 13",
+      "level14": "Level 14",
+      "level15": "Level 15",
+      "level16": "Level 16",
+      "level17": "Level 17",
+      "level18": "Level 18",
+      "level19": "Level 19",
+      "level20": "Level 20"
+    },
+    "race": {
+      "race": "Race",
+      "aberrations": "Aberrations",
+      "beasts": "Beasts",
+      "celestials": "Celestials",
+      "constructs": "Constructs",
+      "dragons": "Dragons",
+      "elementals": "Elementals",
+      "fey": "Fey",
+      "fiends": "Fiends",
+      "giants": "Giants",
+      "humanoids": "Humanoids",
+      "monstrosities": "Monstrosities",
+      "oozes": "Oozes",
+      "plantoids": "Plantoids",
+      "undead": "Undead"
+    },
+    "class": {
+      "class": "class",
+      "artificer": "Artificer",
+      "barbarian": "Barbarian",
+      "bard": "Bard",
+      "cleric": "Cleric",
+      "druid": "Druid",
+      "fighter": "Fighter",
+      "monk": "Monk",
+      "paladin": "Paladin",
+      "ranger": "Ranger",
+      "rogue": "Rogue",
+      "sorcerer": "Sorcerer",
+      "warlock": "Warlock",
+      "wizard": "Wizard"
+    }
+  },
+  "languageSwitcher": {
+    "title": "Language",
+    "english": "English",
+    "spanish": "Español"
+  },
   "genericErrorMessage": {
     "sommetingWentWrong": "Uh oh! Something went wrong."
   },

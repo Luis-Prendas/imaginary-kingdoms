@@ -12,9 +12,11 @@ type SheetStore = {
   setEnableEdit: (enableEdit: boolean) => void
   setSheets: (sheetId: string) => void
   updateField: ({ newName, field }: { newName: string; field: string }) => void
+  emptySheet: () => void
 }
 
 export const useSheetStore = create<SheetStore>((set, get) => ({
+  isLoading: true,
   enableSave: false,
   enableEdit: true,
   sheet: null,
@@ -34,5 +36,8 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
     const updatedSheet = { ...currentSheet, [field]: newName }
     set({ enableSave: true })
     set({ sheet: updatedSheet })
+  },
+  async emptySheet() {
+    set({ sheet: null })
   },
 }))

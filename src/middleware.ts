@@ -36,11 +36,7 @@ export default auth((req) => {
   }
 
   // Redirect to /login if the user is not logged in and tries to access a protected route
-  if (
-    !isLoggedIn &&
-    !authRoutes.some((route) => nextUrl.pathname.endsWith(route)) &&
-    !nextUrl.pathname.endsWith('/')
-  ) {
+  if (!isLoggedIn && !authRoutes.some((route) => nextUrl.pathname.endsWith(route)) && !nextUrl.pathname.endsWith('/')) {
     return NextResponse.redirect(new URL(`/${locale}/login`, nextUrl))
   }
 

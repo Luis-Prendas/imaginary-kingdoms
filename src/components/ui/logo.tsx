@@ -1,10 +1,4 @@
-export default function Logo({
-  className,
-  fill = '#d4d4d8',
-}: {
-  className?: string
-  fill?: string
-}) {
+export default function Logo({ className, fill = '#d4d4d8' }: { className?: string; fill?: string }) {
   return (
     <svg
       className={className}
