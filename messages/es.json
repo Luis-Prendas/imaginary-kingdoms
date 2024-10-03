@@ -115,6 +115,32 @@
       "sorcerer": "Hechicero",
       "warlock": "Brujo",
       "wizard": "Mago"
+    },
+    "skills": {
+      "skills": "Habilidades",
+
+      "athletics": "Atletismo",
+
+      "acrobatics": "Acrobacias",
+      "sleightOfHand": "Juego de manos",
+      "stealth": "Sigilo",
+      
+      "arcana": "Arcano",
+      "history": "Historia",
+      "investigation": "Investigación",
+      "nature": "Naturaleza",
+      "religion": "Religión",
+
+      "animalHandling": "Trato con animales",
+      "insight": "Perspicacia",
+      "medicine": "Medicina",
+      "perception": "Percepción",
+      "survival": "Supervivencia",
+
+      "deception": "Engaño",
+      "intimidation": "Intimidación",
+      "persuasion": "Persuasión",
+      "performance": "Interpretación"
     }
   },
   "languageSwitcher": {

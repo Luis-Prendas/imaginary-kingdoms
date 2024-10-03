@@ -60,9 +60,16 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
       proficiencyBonus,
       strength,
       competenceStrength,
+      competenceAthletics,
       dexterity,
       competenceDexterity,
+      competenceStealth,
       constitution,
+      competenceArcana,
+      competenceHistory,
+      competenceInvestigation,
+      competenceNature,
+      competenceReligion,
       competenceConstitution,
       intelligence,
       competenceIntelligence,
@@ -70,17 +77,32 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
       competenceWisdom,
       charisma,
       competenceCharisma,
+      competenceDeception,
+      competenceIntimidation,
+      competencePersuasion,
+      competencePerformance,
+      competenceAcrobatics,
+      competenceSleightOfHand,
+      competenceAnimalHandling,
+      competenceInsight,
+      competenceMedicine,
+      competencePerception,
+      competenceSurvival,
     } = currentSheet
 
     // Update related to strength
     const strengthMod = Math.floor((strength - 10) / 2)
     const savingStrength = competenceStrength ? strengthMod + proficiencyBonus : strengthMod
+    const athletics = competenceAthletics ? strengthMod + proficiencyBonus : strengthMod
 
     // Update related to dexterity
     const dexterityMod = Math.floor((dexterity - 10) / 2)
     const savingDexterity = competenceDexterity ? dexterityMod + proficiencyBonus : dexterityMod
     const armorClass = dexterityMod + 10
     const initiative = dexterityMod
+    const acrobatics = competenceAcrobatics ? dexterityMod + proficiencyBonus : dexterityMod
+    const sleightOfHand = competenceSleightOfHand ? dexterityMod + proficiencyBonus : dexterityMod
+    const stealth = competenceStealth ? dexterityMod + proficiencyBonus : dexterityMod
 
     // Update related to constitution
     const constitutionMod = Math.floor((constitution - 10) / 2)
@@ -89,17 +111,31 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
     // Update related to intelligence
     const intelligenceMod = Math.floor((intelligence - 10) / 2)
     const savingIntelligence = competenceIntelligence ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const arcana = competenceArcana ? constitutionMod + proficiencyBonus : constitutionMod
+    const history = competenceHistory ? constitutionMod + proficiencyBonus : constitutionMod
+    const investigation = competenceInvestigation ? constitutionMod + proficiencyBonus : constitutionMod
+    const nature = competenceNature ? constitutionMod + proficiencyBonus : constitutionMod
+    const religion = competenceReligion ? constitutionMod + proficiencyBonus : constitutionMod
 
     // Update related to wisdom
     const wisdomMod = Math.floor((wisdom - 10) / 2)
     const savingWisdom = competenceWisdom ? wisdomMod + proficiencyBonus : wisdomMod
+    const animalHandling = competenceAnimalHandling ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const insight = competenceInsight ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const medicine = competenceMedicine ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const perception = competencePerception ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const survival = competenceSurvival ? intelligenceMod + proficiencyBonus : intelligenceMod
 
     // Update related to charisma
     const charismaMod = Math.floor((charisma - 10) / 2)
     const savingCharisma = competenceCharisma ? charismaMod + proficiencyBonus : charismaMod
+    const deception = competenceDeception ? charismaMod + proficiencyBonus : charismaMod
+    const intimidation = competenceIntimidation ? charismaMod + proficiencyBonus : charismaMod
+    const persuasion = competencePersuasion ? charismaMod + proficiencyBonus : charismaMod
+    const performance = competencePerformance ? charismaMod + proficiencyBonus : charismaMod
 
     console.log(armorClass)
-    
+
     // Update Sheet
     const updatedSheet = {
       ...currentSheet,
@@ -117,6 +153,24 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
       savingCharisma,
       armorClass,
       initiative,
+      acrobatics,
+      sleightOfHand,
+      stealth,
+      arcana,
+      athletics,
+      history,
+      investigation,
+      nature,
+      religion,
+      animalHandling,
+      insight,
+      medicine,
+      perception,
+      survival,
+      deception,
+      intimidation,
+      persuasion,
+      performance,
     }
     set({ sheet: updatedSheet })
   },
