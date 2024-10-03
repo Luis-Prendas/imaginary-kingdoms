@@ -5,13 +5,13 @@ import { ReactNode, useEffect } from 'react'
 
 interface Props {
   children: ReactNode
-  sheetData: CharacterSheet
+  sheetId: string
 }
 
-export default function SheetStoreProvider({ children, sheetData }: Props) {
+export default function SheetStoreProvider({ children, sheetId }: Props) {
   const { setSheets } = useSheetStore()
   useEffect(() => {
-    setSheets(sheetData)
+    setSheets(sheetId)
   }, [])
 
   return <>{children}</>

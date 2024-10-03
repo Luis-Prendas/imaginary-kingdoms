@@ -1,15 +1,14 @@
 import Logo from '@/components/ui/logo'
 import { Separator } from '@/components/ui/separator'
 import { useSheetStore } from '@/store/sheetStore'
-import { CharacterSheet } from '@prisma/client'
-import { useEffect, useState } from 'react'
 
-interface Props {
-  lockSheet: boolean
-}
+export default function SheetBodyHeader() {
+  const { sheet, updateField, enableEdit } = useSheetStore()
 
-export default function SheetBodyHeader({ lockSheet }: Props) {
-  const { sheet } = useSheetStore()
+
+  const handleChangeField = ({ field, newValue }: { field: string; newValue: string }) => {
+    updateField({ field, newName: newValue })
+  }
 
   return (
     <header className='flex flex-col w-full'>
@@ -21,9 +20,11 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
             id='characer-sheet-name'
             placeholder='Character name...'
             className='bg-transparent text-4xl font-bold'
+            onChange={(e) => {
+              handleChangeField({ field: 'name', newValue: e.target.value })
+            }}
             defaultValue={sheet?.name}
-            // onChange={(e) => setCharacterName(e.target.value)}
-            disabled={lockSheet}
+            disabled={enableEdit}
             maxLength={20}
           />
           {sheet?.description && (
@@ -33,18 +34,23 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
               id='characer-sheet-description'
               placeholder='Character description...'
               className='bg-transparent'
+              onChange={(e) => {
+                handleChangeField({ field: 'description', newValue: e.target.value })
+              }}
               defaultValue={sheet?.description}
-              disabled={lockSheet}
+              disabled={enableEdit}
               maxLength={45}
             />
           )}
           <div className='flex gap-2'>
-            {lockSheet ? (
+            {enableEdit ? (
               <p>{sheet?.raza}</p>
             ) : (
               <select
                 className='bg-transparent appearance-none flex justify-center items-center'
-                // onChange={(e) => setRazaSelected(e.target.value)}
+                onChange={(e) => {
+                  handleChangeField({ field: 'raza', newValue: e.target.value })
+                }}
               >
                 <option value='' hidden>
                   {sheet?.raza}
@@ -61,12 +67,14 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
               </select>
             )}
             <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
-            {lockSheet ? (
+            {enableEdit ? (
               <p>{sheet?.clase}</p>
             ) : (
               <select
                 className='bg-transparent appearance-none flex justify-center items-center'
-                // onChange={(e) => setClassSelected(e.target.value)}
+                onChange={(e) => {
+                  handleChangeField({ field: 'clase', newValue: e.target.value })
+                }}
               >
                 <option value='' hidden>
                   {sheet?.clase}
@@ -86,12 +94,14 @@ export default function SheetBodyHeader({ lockSheet }: Props) {
               </select>
             )}
             <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
-            {lockSheet ? (
+            {enableEdit ? (
               <p>{sheet?.level}</p>
             ) : (
               <select
                 className='bg-transparent appearance-none flex justify-center items-center'
-                // onChange={(e) => setLevelSelected(e.target.value)}
+                onChange={(e) => {
+                  handleChangeField({ field: 'level', newValue: e.target.value })
+                }}
               >
                 <option value='' hidden>
                   {sheet?.level}

@@ -1,7 +1,24 @@
-import { auth } from '@/auth'
+'use client'
 
-export default async function Home() {
-  const session = await auth()
+import { useGetAllSheets } from '@/hooks/use-sheet'
+import Link from 'next/link'
+import { useState } from 'react'
 
-  return <div>content</div>
+export default function Home({ emerging = false }: { emerging?: boolean }) {
+  // const session = await auth()
+
+  const { data } = useGetAllSheets()
+
+  return (
+    <main>
+      <ul>
+        {data.response &&
+          data.response.map((sheet) => (
+            <li key={sheet.id}>
+              <a href={`sheet/${sheet.id}`}>{sheet.name}</a>
+            </li>
+          ))}
+      </ul>
+    </main>
+  )
 }
