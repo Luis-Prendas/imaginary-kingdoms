@@ -116,6 +116,32 @@
       "sorcerer": "Sorcerer",
       "warlock": "Warlock",
       "wizard": "Wizard"
+    },
+    "skills": {
+      "skills": "Skills",
+
+      "athletics": "Athletics",
+
+      "acrobatics": "Acrobatics",
+      "sleightOfHand": "Sleight of Hand",
+      "stealth": "Stealth",
+
+      "arcana": "Arcana",
+      "history": "History",
+      "investigation": "Investigation",
+      "nature": "Nature",
+      "religion": "Religion",
+
+      "animalHandling": "Animal Handling",
+      "insight": "Insight",
+      "medicine": "Medicine",
+      "perception": "Perception",
+      "survival": "Survival",
+
+      "deception": "Deception",
+      "intimidation": "Intimidation",
+      "persuasion": "Persuasion",
+      "performance": "Performance"
     }
   },
   "languageSwitcher": {
