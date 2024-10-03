@@ -28,9 +28,44 @@
   "sheet": {
     "save": "Save",
     "successSaveMessage": "The sheet was saved successfully.",
-    "characerSheet": "Character sheet",
-    "characerName": "Character name",
-    "characerDescription": "Character description",
+    "characterSheet": "Character sheet",
+    "characterName": "Character name",
+    "characterDescription": "Character description",
+    "armorClass": "Armor Class",
+    "initiative": "Initiative",
+    "hitPoints": "HP",
+    "tempHitPoints": "Temporal HP",
+    "stats": {
+      "strength": "Strength",
+      "str": "STR",
+      "dexterity": "Dexterity",
+      "dex": "DEX",
+      "constitution": "Constitution",
+      "con": "CON",
+      "intelligence": "Intelligence",
+      "int": "INT",
+      "wisdom": "Wisdom",
+      "wis": "WIS",
+      "charisma": "Charisma",
+      "cha": "CHA"
+    },
+    "savingsThorows": {
+      "savingsThorows": "Savings Thorows",
+      "str": "Str",
+      "dex": "Dex",
+      "con": "Con",
+      "int": "Int",
+      "wis": "Wis",
+      "cha": "Cha"
+    },
+    "details": {
+      "size": "Size",
+      "speed": "Speed",
+      "senses": "Senses",
+      "languages": "Languages",
+      "passivePerception": "Passive Perception",
+      "proficiencyBonus": "Proficiency Bonus"
+    },
     "level": {
       "levell": "Leve l",
       "level1": "Level 1",

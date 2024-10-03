@@ -37,7 +37,7 @@ export default function MainHeader({ emerging }: Props) {
     <header className='flex w-full justify-between p-2'>
       <div className='flex gap-2 items-center'>
         <FigmaLogoIcon className='w-5 h-5' fill='#530800' />
-        <h4>{t('sheet.characerSheet')}</h4>
+        <h4>{t('sheet.characterSheet')}</h4>
         <button onClick={() => setEnableEdit(!enableEdit)}>
           {enableEdit ? (
             <Icon icon='ant-design:lock-filled' className='w-6 h-6' />

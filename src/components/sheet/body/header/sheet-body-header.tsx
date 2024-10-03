@@ -1,25 +1,39 @@
+import { Checkbox } from '@/components/ui/checkbox'
 import Logo from '@/components/ui/logo'
 import { Separator } from '@/components/ui/separator'
 import { useSheetStore } from '@/store/sheetStore'
+import { CheckedState } from '@radix-ui/react-checkbox'
 import { useTranslations } from 'next-intl'
 
 export default function SheetBodyHeader() {
   const t = useTranslations()
-  const { sheet, updateField, enableEdit } = useSheetStore()
+  const { sheet, enableEdit, updateField, updateStatField, updateSwitchField } = useSheetStore()
 
   const handleChangeField = ({ field, newValue }: { field: string; newValue: string }) => {
-    updateField({ field, newName: newValue })
+    updateField({ field, newValue: newValue })
+  }
+
+  const handleChangeFielNumber = ({ field, newValue }: { field: string; newValue: string }) => {
+    updateField({ field, newValue: Number(newValue.replace(/[^0-9\-]/g, '')) })
+  }
+
+  const handleChangeStatFiel = ({ field, newValue }: { field: string; newValue: string }) => {
+    updateStatField({ field, newValue: Number(newValue.replace(/[^0-9\-]/g, '')) })
+  }
+
+  const handleChangeSwitchField = ({ field, newValue }: { field: string; newValue: CheckedState }) => {
+    updateSwitchField({ field, newValue: newValue === 'indeterminate' ? false : newValue })
   }
 
   return (
     <header className='flex flex-col w-full'>
-      <div className='flex justify-between'>
+      <section className='flex justify-between'>
         <section className='flex flex-col w-full mb-1'>
           <input
             type='text'
             name='characer-sheet-name'
             id='characer-sheet-name'
-            placeholder={t('sheet.charancerName')}
+            placeholder={t('sheet.characterName')}
             className='bg-transparent text-4xl font-bold'
             onChange={(e) => {
               handleChangeField({ field: 'name', newValue: e.target.value })
@@ -32,7 +46,7 @@ export default function SheetBodyHeader() {
             type='text'
             name='characer-sheet-description'
             id='characer-sheet-description'
-            placeholder={t('sheet.characerDescription')}
+            placeholder={t('sheet.characterDescription')}
             className='bg-transparent'
             onChange={(e) => {
               handleChangeField({ field: 'description', newValue: e.target.value })
@@ -138,30 +152,293 @@ export default function SheetBodyHeader() {
             className='w-16 h-16 object-cover align-middle rounded-full object-top '
           />
         </section>
-      </div>
+      </section>
       <Separator className='bg-[#530800ad] h-[2px]' />
       <section className='flex justify-between items-center w-full h-full p-2'>
         <div className='flex flex-col justify-center items-center w-full'>
-          <strong>AC</strong>
-          <span>11</span>
+          <label htmlFor='characer-sheet-ac'>
+            <strong>{t('sheet.armorClass')}</strong>
+          </label>
+          <input
+            type='text'
+            name='characer-sheet-ac'
+            id='characer-sheet-ac'
+            className='bg-transparent w-7 text-center'
+            onChange={(e) => {
+              handleChangeFielNumber({ field: 'armorClass', newValue: e.target.value })
+            }}
+            defaultValue={sheet?.armorClass}
+            disabled={enableEdit}
+            maxLength={2}
+          />
         </div>
         <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
         <div className='flex flex-col justify-center items-center w-full'>
-          <strong>Initiative</strong>
+          <strong>{t('sheet.initiative')}</strong>
           <div className='flex gap-2'>
             <Logo className='w-5 h-5' fill='#530800' />
-            <span>18</span>
+            <span>{sheet?.initiative}</span>
           </div>
         </div>
         <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
         <div className='flex flex-col justify-center items-center w-full'>
-          <strong>Hit Points</strong>
-          <span>22 / 22</span>
+          <label htmlFor='characer-sheet-hit-points'>
+            <strong>{t('sheet.hitPoints')}</strong>
+          </label>
+          <span>
+            <input
+              type='text'
+              name='characer-sheet-hit-points'
+              id='characer-sheet-hit-points'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => {
+                handleChangeFielNumber({ field: 'currentHitPoints', newValue: e.target.value })
+              }}
+              defaultValue={sheet?.currentHitPoints}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+            /
+            <input
+              type='text'
+              name='characer-sheet-max-hit-points'
+              id='characer-sheet-max-hit-points'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => {
+                handleChangeFielNumber({ field: 'hitPoints', newValue: e.target.value })
+              }}
+              defaultValue={sheet?.hitPoints}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+          </span>
         </div>
         <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
         <div className='flex flex-col justify-center items-center w-full'>
-          <strong>Temp HP</strong>
-          <span>--</span>
+          <strong>{t('sheet.tempHitPoints')}</strong>
+          <input
+            type='text'
+            name='characer-sheet-temp-hit-points'
+            id='characer-sheet-temp-hit-points'
+            className='bg-transparent w-7 text-center'
+            onChange={(e) => {
+              handleChangeFielNumber({ field: 'tempHitPoints', newValue: e.target.value })
+            }}
+            defaultValue={sheet?.tempHitPoints}
+            disabled={enableEdit}
+            maxLength={2}
+          />
+        </div>
+      </section>
+      <Separator className='bg-[#530800ad] h-[2px]' />
+      <section className='flex justify-between items-center w-full h-full p-2'>
+        <div className='flex flex-col justify-center items-center w-full'>
+          <strong>{t('sheet.stats.str')}</strong>
+          <span>
+            <input
+              type='text'
+              name='characer-sheet-stats-str'
+              id='characer-sheet-stats-str'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => handleChangeStatFiel({ field: 'strength', newValue: e.target.value })}
+              defaultValue={sheet?.strength}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+            {sheet?.strengthMod! >= 0 ? (
+              <strong className='text-green-600'>(+{sheet?.strengthMod})</strong>
+            ) : (
+              <strong className='text-red-600'>({sheet?.strengthMod})</strong>
+            )}
+          </span>
+        </div>
+        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <div className='flex flex-col justify-center items-center w-full'>
+          <strong>{t('sheet.stats.dex')}</strong>
+          <span>
+            <input
+              type='text'
+              name='characer-sheet-stats-dex'
+              id='characer-sheet-stats-dex'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => {
+                handleChangeFielNumber({ field: 'dexterity', newValue: e.target.value })
+              }}
+              defaultValue={sheet?.dexterity}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+            {sheet?.dexterity! >= 10 ? (
+              <strong className='text-green-600'>(+{Math.floor((sheet?.dexterity! - 10) / 2)})</strong>
+            ) : (
+              <strong className='text-red-600'>({Math.floor((sheet?.dexterity! - 10) / 2)})</strong>
+            )}
+          </span>
+        </div>
+        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <div className='flex flex-col justify-center items-center w-full'>
+          <strong>{t('sheet.stats.con')}</strong>
+          <span>
+            <input
+              type='text'
+              name='characer-sheet-stats-con'
+              id='characer-sheet-stats-con'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => {
+                handleChangeFielNumber({ field: 'constitution', newValue: e.target.value })
+              }}
+              defaultValue={sheet?.constitution}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+            {sheet?.constitution! >= 10 ? (
+              <strong className='text-green-600'>(+{Math.floor((sheet?.constitution! - 10) / 2)})</strong>
+            ) : (
+              <strong className='text-red-600'>({Math.floor((sheet?.constitution! - 10) / 2)})</strong>
+            )}
+          </span>
+        </div>
+        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <div className='flex flex-col justify-center items-center w-full'>
+          <strong>{t('sheet.stats.int')}</strong>
+          <span>
+            <input
+              type='text'
+              name='characer-sheet-stats-int'
+              id='characer-sheet-stats-int'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => {
+                handleChangeFielNumber({ field: 'intelligence', newValue: e.target.value })
+              }}
+              defaultValue={sheet?.intelligence}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+            {sheet?.intelligence! >= 10 ? (
+              <strong className='text-green-600'>(+{Math.floor((sheet?.intelligence! - 10) / 2)})</strong>
+            ) : (
+              <strong className='text-red-600'>({Math.floor((sheet?.intelligence! - 10) / 2)})</strong>
+            )}
+          </span>
+        </div>
+        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <div className='flex flex-col justify-center items-center w-full'>
+          <strong>{t('sheet.stats.wis')}</strong>
+          <span>
+            <input
+              type='text'
+              name='characer-sheet-stats-wis'
+              id='characer-sheet-stats-wis'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => {
+                handleChangeFielNumber({ field: 'wisdom', newValue: e.target.value })
+              }}
+              defaultValue={sheet?.wisdom}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+            {sheet?.wisdom! >= 10 ? (
+              <strong className='text-green-600'>(+{Math.floor((sheet?.wisdom! - 10) / 2)})</strong>
+            ) : (
+              <strong className='text-red-600'>({Math.floor((sheet?.wisdom! - 10) / 2)})</strong>
+            )}
+          </span>
+        </div>
+        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <div className='flex flex-col justify-center items-center w-full'>
+          <strong>{t('sheet.stats.cha')}</strong>
+          <span>
+            <input
+              type='text'
+              name='characer-sheet-stats-cha'
+              id='characer-sheet-stats-cha'
+              className='bg-transparent w-7 text-center'
+              onChange={(e) => {
+                handleChangeFielNumber({ field: 'charisma', newValue: e.target.value })
+              }}
+              defaultValue={sheet?.charisma}
+              disabled={enableEdit}
+              maxLength={2}
+            />
+            {sheet?.charisma! >= 10 ? (
+              <strong className='text-green-600'>(+{Math.floor((sheet?.charisma! - 10) / 2)})</strong>
+            ) : (
+              <strong className='text-red-600'>({Math.floor((sheet?.charisma! - 10) / 2)})</strong>
+            )}
+          </span>
+        </div>
+      </section>
+      <Separator className='bg-[#530800ad] h-[2px]' />
+      <section className='flex flex-col w-full pb-2'>
+        <h4>
+          <strong>{t('sheet.savingsThorows.savingsThorows')}</strong>
+        </h4>
+        <div className='flex gap-1 justify-between w-full'>
+          <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
+            <span className='flex items-center gap-1'>
+              <Checkbox
+                className='bg-[#530800]'
+                defaultChecked={sheet?.competenceStrength}
+                onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceStrength', newValue: e })}
+              />
+              {t('sheet.savingsThorows.str')}{' '}
+              {sheet && sheet.savingStrength >= 0 ? (
+                <strong className='text-green-600'>+{sheet?.savingStrength}</strong>
+              ) : (
+                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+              )}
+            </span>
+          </div>
+          <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
+            <span className='flex items-center gap-1'>
+              {t('sheet.savingsThorows.dex')}
+              {sheet && sheet.savingDexterity >= 0 ? (
+                <strong className='text-green-600'>+{sheet?.savingDexterity}</strong>
+              ) : (
+                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+              )}
+            </span>
+          </div>
+          <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
+            <span className='flex items-center gap-1'>
+              {t('sheet.savingsThorows.con')}
+              {sheet && sheet.savingConstitution >= 0 ? (
+                <strong className='text-green-600'>+{sheet?.savingConstitution}</strong>
+              ) : (
+                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+              )}
+            </span>
+          </div>
+          <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
+            <span className='flex items-center gap-1'>
+              {t('sheet.savingsThorows.int')}
+              {sheet && sheet.savingIntelligence >= 0 ? (
+                <strong className='text-green-600'>+{sheet?.savingIntelligence}</strong>
+              ) : (
+                <strong className='text-red-600'>-{sheet?.savingDexterity}</strong>
+              )}
+            </span>
+          </div>
+          <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
+            <span className='flex items-center gap-1'>
+              {t('sheet.savingsThorows.wis')}
+              {sheet && sheet.savingWisdom >= 0 ? (
+                <strong className='text-green-600'>+{sheet?.savingWisdom}</strong>
+              ) : (
+                <strong className='text-red-600'>-{sheet?.savingWisdom}</strong>
+              )}
+            </span>
+          </div>
+          <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
+            <span className='flex items-center gap-1'>
+              {t('sheet.savingsThorows.cha')}
+              {sheet && sheet.savingCharisma >= 0 ? (
+                <strong className='text-green-600'>+{sheet?.savingCharisma}</strong>
+              ) : (
+                <strong className='text-red-600'>-{sheet?.savingCharisma}</strong>
+              )}
+            </span>
+          </div>
         </div>
       </section>
     </header>

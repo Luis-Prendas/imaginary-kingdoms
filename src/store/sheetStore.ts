@@ -11,7 +11,10 @@ type SheetStore = {
   setEnableSave: (enableSave: boolean) => void
   setEnableEdit: (enableEdit: boolean) => void
   setSheets: (sheetId: string) => void
-  updateField: ({ newName, field }: { newName: string; field: string }) => void
+  updateField: ({ newValue, field }: { newValue: string | number; field: string }) => void
+  updateStatField: ({ newValue, field }: { newValue: number; field: string }) => void
+  updateSwitchField: ({ newValue, field }: { newValue: boolean; field: string }) => void
+  calculateStats: () => void
   emptySheet: () => void
 }
 
@@ -31,10 +34,40 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
   async setEnableEdit(enableEdit) {
     set({ enableEdit })
   },
-  async updateField({ newName, field }) {
+  async updateField({ newValue, field }) {
     const currentSheet = get().sheet as Sheet
-    const updatedSheet = { ...currentSheet, [field]: newName }
+    const updatedSheet = { ...currentSheet, [field]: newValue }
     set({ enableSave: true })
+    set({ sheet: updatedSheet })
+  },
+  async updateStatField({ newValue, field }) {
+    const currentSheet = get().sheet as Sheet
+    const updatedSheet = { ...currentSheet, [field]: newValue }
+    set({ enableSave: true })
+    set({ sheet: updatedSheet })
+    get().calculateStats()
+  },
+  async updateSwitchField({ newValue, field }) {
+    const currentSheet = get().sheet as Sheet
+    const updatedSheet = { ...currentSheet, [field]: newValue }
+    set({ enableSave: true })
+    set({ sheet: updatedSheet })
+    get().calculateStats()
+  },
+  async calculateStats() {
+    const currentSheet = get().sheet as Sheet
+
+    // Upgrade related to strength
+    const { strength, competenceStrength, proficiencyBonus } = currentSheet
+    const strengthMod = Math.floor((strength - 10) / 2)
+    const savingStrength = competenceStrength ? strengthMod + proficiencyBonus : strengthMod
+
+    // Update Sheet
+    const updatedSheet = {
+      ...currentSheet,
+      strengthMod,
+      savingStrength,
+    }
     set({ sheet: updatedSheet })
   },
   async emptySheet() {

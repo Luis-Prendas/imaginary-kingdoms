@@ -31,6 +31,32 @@
     "characerSheet": "Hoja de personaje",
     "characerName": "Nombre del personaje",
     "characerDescription": "Descripción del personaje",
+    "armorClass": "Clase de armadura",
+    "initiative": "Iniciativa",
+    "hitPoints": "HP",
+    "tempHitPoints": "HP temporales",
+    "stats": {
+      "strength": "Fuerza",
+      "str": "FUE",
+      "dexterity": "Destreza",
+      "dex": "DES",
+      "constitution": "Constitución",
+      "con": "CON",
+      "intelligence": "Inteligencia",
+      "int": "INT",
+      "wisdom": "Sabiduría",
+      "wis": "SAB",
+      "charisma": "Carisma",
+      "cha": "CAR"
+    },
+    "details": {
+      "size": "Tamaño",
+      "speed": "Velocidad",
+      "senses": "Sentidos",
+      "languages": "Idiomas",
+      "passivePerception": "Percepción pasiva",
+      "proficiencyBonus": "Competencia"
+    },
     "level": {
       "level1": "Nivel 1",
       "level2": "Nivel 2",
