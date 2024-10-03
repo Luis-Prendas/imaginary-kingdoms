@@ -7,7 +7,91 @@
     "login": "Iniciar sesión",
     "register": "Registrarse"
   },
+  "register": {
+    "title": "Registro",
+    "description": "Crea tu cuenta para iniciar sesión.",
+    "username": "Nombre de usuario",
+    "email": "Email",
+    "password": "Contraseña",
+    "register": "Registrarse"
+  },
+  "home": {
+    "logout": "Cerrar sesión",
+    "rooms": {
+      "title": "Crear una sala",
+      "roomName": "Nombre de la sala",
+      "description": "Descripción",
+      "limit": "Límite",
+      "create": "Crear"
+    }
+  },
+  "sheet": {
+    "save": "Guardar",
+    "successSaveMessage": "Se guardaron los cambios correctamente.",
+    "characerSheet": "Hoja de personaje",
+    "characerName": "Nombre del personaje",
+    "characerDescription": "Descripción del personaje",
+    "level": {
+      "level1": "Nivel 1",
+      "level2": "Nivel 2",
+      "level3": "Nivel 3",
+      "level4": "Nivel 4",
+      "level5": "Nivel 5",
+      "level6": "Nivel 6",
+      "level7": "Nivel 7",
+      "level8": "Nivel 8",
+      "level9": "Nivel 9",
+      "level10": "Nivel 10",
+      "level11": "Nivel 11",
+      "level12": "Nivel 12",
+      "level13": "Nivel 13",
+      "level14": "Nivel 14",
+      "level15": "Nivel 15",
+      "level16": "Nivel 16",
+      "level17": "Nivel 17",
+      "level18": "Nivel 18",
+      "level19": "Nivel 19",
+      "level20": "Nivel 20"
+    },
+    "race": {
+      "race": "Raza",
+      "draconid": "Dracónido",
+      "elf": "Elfo",
+      "dwarf": "Enano",
+      "gnome": "Gnomo",
+      "human": "Humano",
+      "halfling": "Mediano",
+      "halfOrc": "Semiorco",
+      "halfElf": "Semielfo",
+      "tiefling": "Tiefling"
+    },
+    "class": {
+      "class": "Clase",
+      "artificer": "Artificiero",
+      "barbarian": "Bárbaro",
+      "bard": "Bardo",
+      "cleric": "Clérigo",
+      "druid": "Druida",
+      "fighter": "Guerrero",
+      "monk": "Monje",
+      "paladin": "Paladín",
+      "ranger": "Explorador",
+      "rogue": "Pícaro",
+      "sorcerer": "Hechicero",
+      "warlock": "Brujo",
+      "wizard": "Mago"
+    }
+  },
+  "languageSwitcher": {
+    "title": "Lenguaje",
+    "english": "English",
+    "spanish": "Español"
+  },
   "genericErrorMessage": {
-    "sommetingWentWrong": "¡Uh oh! Algo salió mal."
+    "sommetingWentWrong": "¡Oh no! Algo salió mal..."
+  },
+  "genericSuccessMessage": {
+    "success": "Éxito!",
+    "theRoomWasCreated": "la sala fue creada con éxito."
   }
 }

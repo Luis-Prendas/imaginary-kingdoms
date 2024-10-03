@@ -55,20 +55,15 @@ export default function SheetBodyHeader() {
                 <option value='' hidden>
                   {t(`sheet.race.${sheet?.raza}`)}
                 </option>
-                <option value='aberrations'>{t('sheet.race.aberrations')}</option>
-                <option value='beasts'>{t('sheet.race.beasts')}</option>
-                <option value='celestials'>{t('sheet.race.celestials')}</option>
-                <option value='constructs'>{t('sheet.race.constructs')}</option>
-                <option value='dragons'>{t('sheet.race.dragons')}</option>
-                <option value='elementals'>{t('sheet.race.elementals')}</option>
-                <option value='fey'>{t('sheet.race.fey')}</option>
-                <option value='fiends'>{t('sheet.race.fiends')}</option>
-                <option value='giants'>{t('sheet.race.giants')}</option>
-                <option value='humanoids'>{t('sheet.race.humanoids')}</option>
-                <option value='monstrosities'>{t('sheet.race.monstrosities')}</option>
-                <option value='oozes'>{t('sheet.race.oozes')}</option>
-                <option value='plantoids'>{t('sheet.race.plantoids')}</option>
-                <option value='undead'>{t('sheet.race.undead')}</option>
+                <option value='draconid'>{t('sheet.race.draconid')}</option>
+                <option value='elf'>{t('sheet.race.elf')}</option>
+                <option value='dwarf'>{t('sheet.race.dwarf')}</option>
+                <option value='gnome'>{t('sheet.race.gnome')}</option>
+                <option value='human'>{t('sheet.race.human')}</option>
+                <option value='halfling'>{t('sheet.race.halfling')}</option>
+                <option value='halfOrc'>{t('sheet.race.halfOrc')}</option>
+                <option value='halfElf'>{t('sheet.race.halfElf')}</option>
+                <option value='tiefling'>{t('sheet.race.tiefling')}</option>
               </select>
             )}
             <Separator className='bg-[#5308003f] h-6' orientation='vertical' />

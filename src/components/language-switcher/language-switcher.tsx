@@ -12,7 +12,8 @@ export function LanguageSwitcher() {
   const handleChangeLanguage = (newLocale: string) => {
     const newPath = new URL(window.location.href)
     newPath.pathname = newPath.pathname.replace(/\/en\/|\/es\//, '/' + newLocale + '/')
-    router.push(newPath.href)
+    router.replace(newPath.href)
+    router.refresh()
   }
 
   return (

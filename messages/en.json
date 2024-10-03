@@ -55,21 +55,16 @@
       "level20": "Level 20"
     },
     "race": {
-      "race": "Race",
-      "aberrations": "Aberrations",
-      "beasts": "Beasts",
-      "celestials": "Celestials",
-      "constructs": "Constructs",
-      "dragons": "Dragons",
-      "elementals": "Elementals",
-      "fey": "Fey",
-      "fiends": "Fiends",
-      "giants": "Giants",
-      "humanoids": "Humanoids",
-      "monstrosities": "Monstrosities",
-      "oozes": "Oozes",
-      "plantoids": "Plantoids",
-      "undead": "Undead"
+      "race": "race",
+      "draconid": "Draconid",
+      "elf": "Elf",
+      "dwarf": "Dwarf",
+      "gnome": "Gnome",
+      "human": "Human",
+      "halfling": "Halflinz",
+      "halfOrc": "Half-Orc",
+      "halfElf": "Half-Elf",
+      "tiefling": "Tiefling"
     },
     "class": {
       "class": "class",
