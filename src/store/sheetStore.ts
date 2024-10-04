@@ -111,20 +111,20 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
     // Update related to intelligence
     const intelligenceMod = Math.floor((intelligence - 10) / 2)
     const savingIntelligence = competenceIntelligence ? intelligenceMod + proficiencyBonus : intelligenceMod
-    const arcana = competenceArcana ? constitutionMod + proficiencyBonus : constitutionMod
-    const history = competenceHistory ? constitutionMod + proficiencyBonus : constitutionMod
-    const investigation = competenceInvestigation ? constitutionMod + proficiencyBonus : constitutionMod
-    const nature = competenceNature ? constitutionMod + proficiencyBonus : constitutionMod
-    const religion = competenceReligion ? constitutionMod + proficiencyBonus : constitutionMod
+    const arcana = competenceArcana ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const history = competenceHistory ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const investigation = competenceInvestigation ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const nature = competenceNature ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const religion = competenceReligion ? intelligenceMod + proficiencyBonus : intelligenceMod
 
     // Update related to wisdom
     const wisdomMod = Math.floor((wisdom - 10) / 2)
     const savingWisdom = competenceWisdom ? wisdomMod + proficiencyBonus : wisdomMod
-    const animalHandling = competenceAnimalHandling ? intelligenceMod + proficiencyBonus : intelligenceMod
-    const insight = competenceInsight ? intelligenceMod + proficiencyBonus : intelligenceMod
-    const medicine = competenceMedicine ? intelligenceMod + proficiencyBonus : intelligenceMod
-    const perception = competencePerception ? intelligenceMod + proficiencyBonus : intelligenceMod
-    const survival = competenceSurvival ? intelligenceMod + proficiencyBonus : intelligenceMod
+    const animalHandling = competenceAnimalHandling ? wisdomMod + proficiencyBonus : wisdomMod
+    const insight = competenceInsight ? wisdomMod + proficiencyBonus : wisdomMod
+    const medicine = competenceMedicine ? wisdomMod + proficiencyBonus : wisdomMod
+    const perception = competencePerception ? wisdomMod + proficiencyBonus : wisdomMod
+    const survival = competenceSurvival ? wisdomMod + proficiencyBonus : wisdomMod
 
     // Update related to charisma
     const charismaMod = Math.floor((charisma - 10) / 2)
