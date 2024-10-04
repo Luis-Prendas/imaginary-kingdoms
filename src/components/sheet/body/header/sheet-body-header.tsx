@@ -412,7 +412,7 @@ export default function SheetBodyHeader() {
               {sheet && sheet.savingConstitution >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingConstitution}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingConstitution}</strong>
+                <strong className='text-red-600'>{sheet?.savingConstitution}</strong>
               )}
             </span>
           </div>
@@ -427,7 +427,7 @@ export default function SheetBodyHeader() {
               {sheet && sheet.savingIntelligence >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingIntelligence}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingIntelligence}</strong>
+                <strong className='text-red-600'>{sheet?.savingIntelligence}</strong>
               )}
             </span>
           </div>
@@ -442,7 +442,7 @@ export default function SheetBodyHeader() {
               {sheet && sheet.savingWisdom >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingWisdom}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingWisdom}</strong>
+                <strong className='text-red-600'>{sheet?.savingWisdom}</strong>
               )}
             </span>
           </div>
@@ -457,7 +457,7 @@ export default function SheetBodyHeader() {
               {sheet && sheet.savingCharisma >= 0 ? (
                 <strong className='text-green-600'>+{sheet?.savingCharisma}</strong>
               ) : (
-                <strong className='text-red-600'>-{sheet?.savingCharisma}</strong>
+                <strong className='text-red-600'>{sheet?.savingCharisma}</strong>
               )}
             </span>
           </div>
