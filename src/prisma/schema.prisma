@@ -26,6 +26,8 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  rooms Player[]
 }
 
 model Account {
@@ -49,23 +51,25 @@ model Account {
   @@id([provider, providerAccountId])
 }
 
-// Game rooms model
 model Room {
-  id          String  @id @default(cuid())
-  name        String
-  description String
-  limit       Int
-  isActive    Boolean @default(true)
-  isPublic    Boolean @default(true)
-  ownerId     String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  id      String   @id @default(cuid())
+  name    String   @unique
+  ownerId String
+  owner   User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  players Player[] // Relación muchos a muchos a través de la tabla Player
 }
 
-// Character sheet
+model Player {
+  roomId String
+  userId String
+  role   String // Puedes añadir un campo opcional para definir el rol del jugador en la sala
+
+  room Room @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([roomId, userId])
+}
+
 model CharacterSheet {
   id          String   @id @default(cuid())
   name        String
@@ -74,6 +78,7 @@ model CharacterSheet {
   raza        String
   clase       String
   ownerId     String
+  isPublic    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -156,7 +161,7 @@ model CharacterSheet {
   stealth                  Int     @default(0)
   competenceStealth        Boolean @default(false)
   survival                 Int     @default(0)
-  competenceSurvival       Boolean @default(false)  
+  competenceSurvival       Boolean @default(false)
 
   owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }

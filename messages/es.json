@@ -154,5 +154,12 @@
   "genericSuccessMessage": {
     "success": "Éxito!",
     "theRoomWasCreated": "la sala fue creada con éxito."
+  },
+  "rooms": {
+    "rooms": "Salas",
+    "name": "Nombre de la sala",
+    "create": "Crear",
+    "join": "Unirse",
+    "roomId": "ID de la sala"
   }
 }
