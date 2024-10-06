@@ -26,6 +26,7 @@
     }
   },
   "sheet": {
+    "by": "Hecho por",
     "save": "Guardar",
     "successSaveMessage": "Se guardaron los cambios correctamente.",
     "characterSheet": "Hoja de personaje",
