@@ -373,7 +373,7 @@ export default function SheetBodyHeader() {
         <div className='flex gap-1 justify-between w-full'>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceStrength}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceStrength', newValue: e })}
@@ -388,7 +388,7 @@ export default function SheetBodyHeader() {
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceDexterity}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceDexterity', newValue: e })}
@@ -403,7 +403,7 @@ export default function SheetBodyHeader() {
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceConstitution}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceConstitution', newValue: e })}
@@ -418,7 +418,7 @@ export default function SheetBodyHeader() {
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceIntelligence}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceIntelligence', newValue: e })}
@@ -433,7 +433,7 @@ export default function SheetBodyHeader() {
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceWisdom}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceWisdom', newValue: e })}
@@ -448,7 +448,7 @@ export default function SheetBodyHeader() {
           </div>
           <div className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
             <span className='flex items-center gap-1'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceCharisma}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceCharisma', newValue: e })}

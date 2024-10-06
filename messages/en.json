@@ -26,6 +26,7 @@
     }
   },
   "sheet": {
+    "by": "By",
     "save": "Save",
     "successSaveMessage": "The sheet was saved successfully.",
     "characterSheet": "Character sheet",

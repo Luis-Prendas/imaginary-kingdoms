@@ -21,8 +21,8 @@ export default function SheetBodySkills() {
         <div className='flex justify-between w-full gap-1'>
           <div className='flex flex-col w-full justify-start items-start'>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
-                className='bg-[#530800]'
+              <Checkbox disabled={sheet?.isTheOwner ? false : true} disabled={sheet?.isTheOwner ? false : true}
+                className='bg-[#530800] disabled:cursor-auto'
                 defaultChecked={sheet?.competenceAthletics}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceAthletics', newValue: e })}
               />
@@ -31,7 +31,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.str')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceAcrobatics}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceAcrobatics', newValue: e })}
@@ -41,7 +41,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.dex')})</code>
             </p>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceSleightOfHand}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceSleightOfHand', newValue: e })}
@@ -51,7 +51,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.dex')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceStealth}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceStealth', newValue: e })}
@@ -61,7 +61,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.dex')})</code>
             </p>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceArcana}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceArcana', newValue: e })}
@@ -71,7 +71,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.int')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceHistory}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceHistory', newValue: e })}
@@ -83,7 +83,7 @@ export default function SheetBodySkills() {
           </div>
           <div className='flex flex-col w-full'>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceInvestigation}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceInvestigation', newValue: e })}
@@ -93,7 +93,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.int')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceNature}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceNature', newValue: e })}
@@ -103,7 +103,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.int')})</code>
             </p>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceReligion}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceReligion', newValue: e })}
@@ -113,7 +113,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.int')})</code>
             </p>
             <p className=' bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceAnimalHandling}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceAnimalHandling', newValue: e })}
@@ -123,7 +123,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.wis')})</code>
             </p>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceInsight}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceInsight', newValue: e })}
@@ -133,7 +133,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.wis')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceMedicine}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceMedicine', newValue: e })}
@@ -145,7 +145,7 @@ export default function SheetBodySkills() {
           </div>
           <div className='flex flex-col w-full'>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competencePerception}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competencePerception', newValue: e })}
@@ -155,7 +155,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.wis')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceSurvival}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceSurvival', newValue: e })}
@@ -165,7 +165,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.wis')})</code>
             </p>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceDeception}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceDeception', newValue: e })}
@@ -175,7 +175,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.cha')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competenceIntimidation}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceIntimidation', newValue: e })}
@@ -185,7 +185,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.cha')})</code>
             </p>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competencePersuasion}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competencePersuasion', newValue: e })}
@@ -195,7 +195,7 @@ export default function SheetBodySkills() {
               <code className='opacity-50'>({t('sheet.savingsThorows.cha')})</code>
             </p>
             <p className='bg-[#e4d6b5] px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800]'
                 defaultChecked={sheet?.competencePerformance}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competencePerformance', newValue: e })}

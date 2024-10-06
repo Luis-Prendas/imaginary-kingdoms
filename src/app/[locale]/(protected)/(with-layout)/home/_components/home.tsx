@@ -15,7 +15,7 @@ export default function Home() {
   }, [])
 
   return (
-    <main>
+    <div className='w-full h-full flex justify-center items-center'>
       <ul>
         {data.response &&
           data.response.map((sheet) => (
@@ -24,6 +24,6 @@ export default function Home() {
             </li>
           ))}
       </ul>
-    </main>
+    </div>
   )
 }

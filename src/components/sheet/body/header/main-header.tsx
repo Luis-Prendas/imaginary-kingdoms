@@ -1,10 +1,13 @@
 import { updateField } from '@/actions/sheet-actions'
+import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
 import { useSheetStore } from '@/store/sheetStore'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { FigmaLogoIcon } from '@radix-ui/react-icons'
+import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 
 interface Props {
   emerging: boolean
@@ -12,8 +15,10 @@ interface Props {
 
 export default function MainHeader({ emerging }: Props) {
   const t = useTranslations()
-  const { enableEdit, enableSave, setEnableEdit, sheet, setEnableSave } = useSheetStore()
   const { toast } = useToast()
+
+  const { enableEdit, enableSave, setEnableEdit, sheet, setEnableSave } = useSheetStore()
+  const session = useSession()
 
   const openPopupWindow = () => {
     const url = window.location.href.replace('/sheet/', '/window-sheet/')
@@ -33,18 +38,26 @@ export default function MainHeader({ emerging }: Props) {
     }
   }
 
+  const [isTheOwner] = useState<boolean>(sheet?.ownerId === session.data?.user.id)
+
   return (
     <header className='flex w-full justify-between p-2'>
       <div className='flex gap-2 items-center'>
         <FigmaLogoIcon className='w-5 h-5' fill='#530800' />
         <h4>{t('sheet.characterSheet')}</h4>
-        <button onClick={() => setEnableEdit(!enableEdit)}>
-          {enableEdit ? (
-            <Icon icon='ant-design:lock-filled' className='w-6 h-6' />
-          ) : (
-            <Icon icon='ant-design:unlock-filled' className='w-6 h-6' />
-          )}
-        </button>
+        {isTheOwner ? (
+          <button onClick={() => setEnableEdit(!enableEdit)}>
+            {enableEdit ? (
+              <Icon icon='ant-design:lock-filled' className='w-6 h-6' />
+            ) : (
+              <Icon icon='ant-design:unlock-filled' className='w-6 h-6' />
+            )}
+          </button>
+        ) : (
+          <Badge variant='secondary'>
+            {t('sheet.by')} {sheet?.owner?.name}
+          </Badge>
+        )}
         {enableSave && (
           <button onClick={() => handleSave()}>
             <Icon icon='ant-design:save' className='w-6 h-6' />

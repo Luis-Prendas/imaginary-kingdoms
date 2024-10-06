@@ -1,8 +1,9 @@
-import { getAllSheetsAction, updateField } from '@/actions/sheet-actions'
-import { CharacterSheet } from '@prisma/client'
+import { getAllSheetsAction, getSheetById, updateField } from '@/actions/sheet-actions'
+import { CharacterSheet, User } from '@prisma/client'
+import { getSession, useSession } from 'next-auth/react'
 import { create } from 'zustand'
 
-type Sheet = CharacterSheet
+type Sheet = CharacterSheet & { owner: User; isTheOwner: boolean }
 
 type SheetStore = {
   enableSave: boolean
@@ -24,8 +25,13 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
   enableEdit: true,
   sheet: null,
   setSheets: async (sheetId) => {
-    const sheets = await getAllSheetsAction()
-    const sheet = sheets.response?.find((e) => e.id === sheetId) as Sheet
+    const session = await getSession()
+    const sheetData = await getSheetById({ sheetId })
+    if (!sheetData.response || !sheetData.response.id) {
+      throw new Error('Invalid sheet data')
+    }
+    const isTheOwner = sheetData.response.ownerId === session?.user.id
+    const sheet: Sheet = { ...sheetData.response, isTheOwner }
     set({ sheet })
   },
   async setEnableSave(enableSave) {

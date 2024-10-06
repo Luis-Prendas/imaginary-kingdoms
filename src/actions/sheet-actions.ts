@@ -10,11 +10,7 @@ export const getAllSheetsAction = async (): Promise<GetAllSheetsAction> => {
     const session = await auth()
     if (!session) throw new Error('Unauthorized')
 
-    const sheet = await db.characterSheet.findMany({
-      where: {
-        ownerId: session.user.id,
-      },
-    })
+    const sheet = await db.characterSheet.findMany()
 
     return { status: 'success', error: null, response: sheet }
   } catch (error) {
@@ -42,6 +38,27 @@ export const updateField = async ({
     })
 
     return { status: 'success', error: null }
+  } catch (error) {
+    console.error(error)
+    return { error: 'error 500', status: 'error' }
+  }
+}
+
+export const getSheetById = async ({ sheetId }: { sheetId: string }) => {
+  try {
+    const session = await auth()
+    if (!session) throw new Error('Unauthorized')
+
+    const sheet = await db.characterSheet.findUnique({
+      where: {
+        id: sheetId,
+      },
+      include: {
+        owner: true,
+      },
+    })
+
+    return { status: 'success', error: null, response: sheet }
   } catch (error) {
     console.error(error)
     return { error: 'error 500', status: 'error' }
