@@ -21,7 +21,7 @@ export default function SheetBodySkills() {
         <div className='flex justify-between w-full gap-1'>
           <div className='flex flex-col w-full justify-start items-start'>
             <p className='px-2 text-nowrap flex items-center gap-1 w-full'>
-              <Checkbox disabled={sheet?.isTheOwner ? false : true} disabled={sheet?.isTheOwner ? false : true}
+              <Checkbox disabled={sheet?.isTheOwner ? false : true}
                 className='bg-[#530800] disabled:cursor-auto'
                 defaultChecked={sheet?.competenceAthletics}
                 onCheckedChange={(e) => handleChangeSwitchField({ field: 'competenceAthletics', newValue: e })}
