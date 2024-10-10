@@ -13,13 +13,13 @@ export default function SheetBodyInventory() {
         <h4>
           <strong>{t('sheet.tabs.inventory.inventory')}</strong>
         </h4>
-        <div className='w-full flex items-center justify-between gap-2 bg-[#e4d6b5] rounded-md'>
+        <div className='w-full flex items-center justify-between gap-2 rounded-md'>
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead className='text-center text-[#530800] font-bold'>{t('sheet.tabs.inventory.cuantity')}</TableHead>
-                <TableHead className='text-center text-[#530800] font-bold'>{t('sheet.tabs.inventory.name')}</TableHead>
-                <TableHead className='text-center text-[#530800] font-bold'>{t('sheet.tabs.inventory.weight')}</TableHead>
+                <TableHead className='text-center font-bold'>{t('sheet.tabs.inventory.cuantity')}</TableHead>
+                <TableHead className='text-center font-bold'>{t('sheet.tabs.inventory.name')}</TableHead>
+                <TableHead className='text-center font-bold'>{t('sheet.tabs.inventory.weight')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

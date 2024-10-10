@@ -90,7 +90,7 @@ export default function SheetBodyHeader() {
                   <option value='tiefling'>{t('sheet.race.tiefling')}</option>
                 </select>
               )}
-              <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
+              <Separator className='h-6' orientation='vertical' />
               {enableEdit ? (
                 <p>{t(`sheet.class.${sheet?.class}`)}</p>
               ) : (
@@ -118,7 +118,7 @@ export default function SheetBodyHeader() {
                   <option value='wizard'>{t('sheet.class.wizard')}</option>
                 </select>
               )}
-              <Separator className='bg-[#5308003f] h-6' orientation='vertical' />
+              <Separator className='h-6' orientation='vertical' />
               {enableEdit ? (
                 <p>
                   {t('sheet.level')} {sheet?.level}
@@ -157,7 +157,7 @@ export default function SheetBodyHeader() {
               )}
             </div>
             <div className='flex gap-2 p-0'>
-              <TabsList className='p-0 bg-transparent text-[#530800ad] '>
+              <TabsList className='p-0 bg-transparent'>
                 <TabsTrigger className='bg-transparent focus-visible:bg-transparent ' value='main'>
                   {t('tabs.main')}
                 </TabsTrigger>
@@ -169,7 +169,7 @@ export default function SheetBodyHeader() {
           </div>
         </section>
       </section>
-      <Separator className='bg-[#530800ad] h-[2px]' />
+      <Separator className='h-[2px]' />
       <section className='flex justify-between items-center w-full h-full p-2'>
         <div className='flex flex-col justify-center items-center w-full'>
           <label htmlFor='characer-sheet-ac'>
@@ -186,7 +186,7 @@ export default function SheetBodyHeader() {
             maxLength={2}
           />
         </div>
-        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <Separator className='h-10' orientation='vertical' />
         <div className='flex flex-col justify-center items-center w-full'>
           <strong>{t('sheet.initiative')}</strong>
           <div className='flex gap-2'>
@@ -203,7 +203,7 @@ export default function SheetBodyHeader() {
             />
           </div>
         </div>
-        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <Separator className='h-10' orientation='vertical' />
         <div className='flex flex-col justify-center items-center w-full'>
           <label htmlFor='characer-sheet-hit-points'>
             <strong>{t('sheet.hitPoints')}</strong>
@@ -236,7 +236,7 @@ export default function SheetBodyHeader() {
             />
           </span>
         </div>
-        <Separator className='bg-[#5308003f] h-10' orientation='vertical' />
+        <Separator className='h-10' orientation='vertical' />
         <div className='flex flex-col justify-center items-center w-full'>
           <strong>{t('sheet.tempHitPoints')}</strong>
           <input
@@ -253,7 +253,7 @@ export default function SheetBodyHeader() {
           />
         </div>
       </section>
-      <Separator className='bg-[#530800ad] h-[2px]' />
+      <Separator className='h-[2px]' />
       <section className='flex justify-between items-center w-full h-full p-2'>
         {stats?.map((stat) => (
           <div key={stat.id} className='flex flex-col justify-center items-center w-full'>
@@ -278,18 +278,17 @@ export default function SheetBodyHeader() {
           </div>
         ))}
       </section>
-      <Separator className='bg-[#530800ad] h-[2px]' />
+      <Separator className='h-[2px]' />
       <section className='flex flex-col w-full pb-2'>
         <h4>
           <strong>{t('sheet.savingsThorows.savingsThorows')}</strong>
         </h4>
         <div className='flex gap-1 justify-between w-full'>
           {savingThrows?.map((savingThrow) => (
-            <div key={savingThrow.id} className='bg-[#e4d6b5] rounded w-full p-1 flex justify-center items-center'>
+            <div key={savingThrow.id} className='rounded w-full bg-secondary p-1 flex justify-center items-center'>
               <span className='flex items-center gap-1'>
                 <Checkbox
                   disabled={isTheOwner ? false : true}
-                  className='bg-[#530800]'
                   defaultChecked={savingThrow.proficiency}
                 />
                 {t(`sheet.savingsThorows.abreviation.${savingThrow.statType}`)}{' '}

@@ -18,9 +18,9 @@ export default function SheetBodySkills() {
           {skills?.map((skill, index) => (
             <div
               key={skill.id}
-              className={`px-2 flex items-center gap-1 text-nowrap ${Math.floor(index / 3) % 2 === 1 ? 'bg-[#e4d6b5]' : ''}`}
+              className={`px-2 flex items-center gap-1 text-nowrap ${Math.floor(index / 3) % 2 === 1 ? 'bg-secondary' : ''}`}
             >
-              <Checkbox disabled={!isTheOwner} className='bg-[#530800] disabled:cursor-auto' defaultChecked={skill.proficiency} />
+              <Checkbox disabled={!isTheOwner} className='disabled:cursor-auto' defaultChecked={skill.proficiency} />
               {skill.value >= 0 ? `+${skill.value}` : skill.value}
               <span>{t(`sheet.skills.${skill.skillType}`)}</span>
               <code className='opacity-50'>({t(`sheet.savingsThorows.abreviation.${skill.statType}`)})</code>

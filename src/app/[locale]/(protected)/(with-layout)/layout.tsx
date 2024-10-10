@@ -4,7 +4,7 @@ import { LanguageSwitcher } from '@/components/language-switcher/language-switch
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className='flex justify-center items-center h-full w-full bg-[#ffa455] text-[#530800]'>
+    <div className='flex justify-center items-center h-full w-full bg-background'>
       <div className='w-full flex justify-end items-center gap-4 absolute top-0 right-0 p-4'>
         <ButtonCreateSheet />
         <LanguageSwitcher />

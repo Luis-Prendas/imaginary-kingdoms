@@ -74,7 +74,7 @@ export default function MainHeader({ emerging }: Props) {
       </div>
       {emerging && (
         <div className='flex justify-center items-center'>
-          <Button variant='ghost' className='hover:bg-[#cac7ae]' onClick={() => openPopupWindow()}>
+          <Button variant='ghost' onClick={() => openPopupWindow()}>
             <Icon icon='oui:popout' />
           </Button>
         </div>
