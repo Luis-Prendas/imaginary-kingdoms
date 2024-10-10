@@ -1,4 +1,9 @@
-import { updateField } from '@/actions/sheet-actions'
+import {
+  updateSheetAction,
+  updateSheetSavingThrowAction,
+  updateSheetSkillAction,
+  updateSheetStatAction,
+} from '@/actions/sheet-actions'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { useToast } from '@/hooks/use-toast'
@@ -17,7 +22,7 @@ export default function MainHeader({ emerging }: Props) {
   const t = useTranslations()
   const { toast } = useToast()
 
-  const { enableEdit, enableSave, setEnableEdit, sheet, setEnableSave } = useSheetStore()
+  const { enableEdit, enableSave, setEnableEdit, sheet, owner, stats, skills, savingThrows, setEnableSave } = useSheetStore()
   const session = useSession()
 
   const openPopupWindow = () => {
@@ -28,8 +33,11 @@ export default function MainHeader({ emerging }: Props) {
   }
 
   const handleSave = async () => {
-    if (sheet) {
-      updateField({ newSheet: sheet, sheetId: sheet.id })
+    if (sheet && stats && skills && savingThrows) {
+      updateSheetAction({ sheet: sheet })
+      updateSheetStatAction({ stats: stats })
+      updateSheetSkillAction({ skills: skills })
+      updateSheetSavingThrowAction({ savingThrows: savingThrows })
       setEnableSave(false)
       toast({
         variant: 'default',
@@ -54,8 +62,8 @@ export default function MainHeader({ emerging }: Props) {
             )}
           </button>
         ) : (
-          <Badge variant='secondary'>
-            {t('sheet.by')} {sheet?.owner?.name}
+          <Badge variant='secondary' className='mt-[2px]'>
+            {t('sheet.by')} {owner?.name}
           </Badge>
         )}
         {enableSave && (

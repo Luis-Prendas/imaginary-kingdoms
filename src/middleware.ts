@@ -23,8 +23,6 @@ export default auth((req) => {
   const isLoggedIn = !!req.auth
   const locale = nextUrl.pathname.split('/')[1] // Assuming locale is the first path segment
 
-  // console.log({ isLoggedIn, path: nextUrl.pathname, locale })
-
   // Allow all authentication API routes
   if (nextUrl.pathname.startsWith(apiAuthPrefix)) {
     return NextResponse.next()

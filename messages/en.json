@@ -26,6 +26,7 @@
     }
   },
   "sheet": {
+    "new": "New Character",
     "by": "By",
     "save": "Save",
     "successSaveMessage": "The sheet was saved successfully.",
@@ -36,28 +37,40 @@
     "initiative": "Initiative",
     "hitPoints": "HP",
     "tempHitPoints": "Temporal HP",
+    "level": "Level",
     "stats": {
-      "strength": "Strength",
-      "str": "STR",
-      "dexterity": "Dexterity",
-      "dex": "DEX",
-      "constitution": "Constitution",
-      "con": "CON",
-      "intelligence": "Intelligence",
-      "int": "INT",
-      "wisdom": "Wisdom",
-      "wis": "WIS",
-      "charisma": "Charisma",
-      "cha": "CHA"
+      "abreviation": {
+        "STRENGTH": "STR",
+        "DEXTERITY": "DEX",
+        "CONSTITUTION": "CON",
+        "INTELLIGENCE": "INT",
+        "WISDOM": "WIS",
+        "CHARISMA": "CHA"
+      },
+      "stats": "Stats",
+      "STRENGTH": "Strength",
+      "DEXTERITY": "Dexterity",
+      "CONSTITUTION": "Constitution",
+      "INTELLIGENCE": "Intelligence",
+      "WISDOM": "Wisdom",
+      "CHARISMA": "Charisma"
     },
     "savingsThorows": {
+      "abreviation": {
+        "STRENGTH": "Str",
+        "DEXTERITY": "Dex",
+        "CONSTITUTION": "Con",
+        "INTELLIGENCE": "Int",
+        "WISDOM": "Wis",
+        "CHARISMA": "Cha"
+      },
       "savingsThorows": "Savings Thorows",
-      "str": "Str",
-      "dex": "Dex",
-      "con": "Con",
-      "int": "Int",
-      "wis": "Wis",
-      "cha": "Cha"
+      "STRENGTH": "Strength",
+      "DEXTERITY": "Dexterity",
+      "CONSTITUTION": "Constitution",
+      "INTELLIGENCE": "Intelligence",
+      "WISDOM": "Wisdom",
+      "CHARISMA": "Charisma"
     },
     "details": {
       "size": "Size",
@@ -66,29 +79,6 @@
       "languages": "Languages",
       "passivePerception": "Passive Perception",
       "proficiencyBonus": "Proficiency Bonus"
-    },
-    "level": {
-      "levell": "Leve l",
-      "level1": "Level 1",
-      "level2": "Level 2",
-      "level3": "Level 3",
-      "level4": "Level 4",
-      "level5": "Level 5",
-      "level6": "Level 6",
-      "level7": "Level 7",
-      "level8": "Level 8",
-      "level9": "Level 9",
-      "level10": "Level 10",
-      "level11": "Level 11",
-      "level12": "Level 12",
-      "level13": "Level 13",
-      "level14": "Level 14",
-      "level15": "Level 15",
-      "level16": "Level 16",
-      "level17": "Level 17",
-      "level18": "Level 18",
-      "level19": "Level 19",
-      "level20": "Level 20"
     },
     "race": {
       "race": "race",
@@ -121,28 +111,39 @@
     "skills": {
       "skills": "Skills",
 
-      "athletics": "Athletics",
+      "ATHLETICS": "Athletics",
 
-      "acrobatics": "Acrobatics",
-      "sleightOfHand": "Sleight of Hand",
-      "stealth": "Stealth",
+      "ACROBATICS": "Acrobatics",
+      "SLEIGHT_OF_HAND": "Sleight of Hand",
+      "STEALTH": "Stealth",
 
-      "arcana": "Arcana",
-      "history": "History",
-      "investigation": "Investigation",
-      "nature": "Nature",
-      "religion": "Religion",
+      "ARCANA": "Arcana",
+      "HISTORY": "History",
+      "INVESTIGATION": "Investigation",
+      "NATURE": "Nature",
+      "RELIGION": "Religion",
 
-      "animalHandling": "Animal Handling",
-      "insight": "Insight",
-      "medicine": "Medicine",
-      "perception": "Perception",
-      "survival": "Survival",
+      "ANIMAL_HANDLING": "Animal Handling",
+      "INSIGHT": "Insight",
+      "MEDICINE": "Medicine",
+      "PERCEPTION": "Perception",
+      "SURVIVAL": "Survival",
 
-      "deception": "Deception",
-      "intimidation": "Intimidation",
-      "persuasion": "Persuasion",
-      "performance": "Performance"
+      "DECEPTION": "Deception",
+      "INTIMIDATION": "Intimidation",
+      "PERSUASION": "Persuasion",
+      "PERFORMANCE": "Performance"
+    },
+    "tabs": {
+      "inventory": {
+        "inventory": "Inventory",
+        "cuantity": "Cuantity",
+        "name": "Name",
+        "weight": "Weight",
+        "objType": {
+          "ARMOR": "Armor"
+        }
+      }
     }
   },
   "languageSwitcher": {
@@ -163,5 +164,9 @@
       "introduction": "Introduction",
       "regionOfPourtas": "Region of Pourtas"
     }
+  },
+  "tabs": {
+    "main": "Main",
+    "inventory": "Inventory"
   }
 }

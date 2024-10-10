@@ -3,18 +3,14 @@ import { useTranslations } from 'next-intl'
 
 export default function SheetBodyDetails() {
   const t = useTranslations()
-  const { sheet, updateField, enableEdit, updateStatField } = useSheetStore()
+  const { sheet, enableEdit, updateSheet } = useSheetStore()
 
   const handleChangeField = ({ field, newValue }: { field: string; newValue: string }) => {
-    updateField({ field, newValue: newValue })
+    updateSheet({ field, newValue: newValue })
   }
 
   const handleChangeFielNumber = ({ field, newValue }: { field: string; newValue: string }) => {
-    updateField({ field, newValue: Number(newValue.replace(/[^0-9\-]/g, '')) })
-  }
-
-  const handleChangeStatFiel = ({ field, newValue }: { field: string; newValue: string }) => {
-    updateStatField({ field, newValue: Number(newValue.replace(/[^0-9\-]/g, '')) })
+    updateSheet({ field, newValue: Number(newValue.replace(/[^0-9\-]/g, '')) })
   }
 
   return (
@@ -111,7 +107,7 @@ export default function SheetBodyDetails() {
             placeholder={t('sheet.details.proficiencyBonus')}
             className='bg-transparent'
             onChange={(e) => {
-              handleChangeStatFiel({ field: 'proficiencyBonus', newValue: e.target.value })
+              handleChangeFielNumber({ field: 'proficiencyBonus', newValue: e.target.value })
             }}
             defaultValue={sheet?.proficiencyBonus}
             disabled={enableEdit}

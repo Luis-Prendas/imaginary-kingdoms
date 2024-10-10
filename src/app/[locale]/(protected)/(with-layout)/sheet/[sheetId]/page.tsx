@@ -13,12 +13,12 @@ type PageProps = {
 
 export default function FichaPage({ params }: PageProps) {
   const { sheetId } = params
-  const { setSheets, sheet } = useSheetStore()
+  const { setSheet, sheet } = useSheetStore()
 
   useEffect(() => {
-    setSheets(sheetId)
+    setSheet(sheetId)
   }, [sheetId])
-  
+
   if (!sheet) return <Loader2 className='h-12 w-12 animate-spin' />
 
   return (

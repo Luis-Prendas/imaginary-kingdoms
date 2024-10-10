@@ -1,5 +1,9 @@
 import { CharacterSheet } from '@prisma/client'
 
-interface GetAllSheetsAction extends ActionsResponse {
+interface ActionTypesCharacterSheets extends ActionsResponse {
   response?: CharacterSheet[]
+}
+
+interface ActionTypesCharacterSheet extends ActionsResponse {
+  response?: CharacterSheet
 }

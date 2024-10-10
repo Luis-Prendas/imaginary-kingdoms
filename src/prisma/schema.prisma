@@ -7,156 +7,181 @@ generator client {
   provider = "prisma-client-js"
 }
 
+/////////////////////////////////// ENUMS ////////////////////////////////////
 enum Role {
   USER
   ADMIN
 }
 
+enum StatType {
+  STRENGTH
+  DEXTERITY
+  CONSTITUTION
+  INTELLIGENCE
+  WISDOM
+  CHARISMA
+}
+
+enum SkillType {
+  ACROBATICS
+  ANIMAL_HANDLING
+  ARCANA
+  ATHLETICS
+  DECEPTION
+  HISTORY
+  INSIGHT
+  INTIMIDATION
+  INVESTIGATION
+  MEDICINE
+  NATURE
+  PERCEPTION
+  PERFORMANCE
+  PERSUASION
+  RELIGION
+  SLEIGHT_OF_HAND
+  STEALTH
+  SURVIVAL
+}
+
+enum ArmorType {
+  LIGHT
+  MEDIUM
+  HEAVY
+}
+
+enum Rarity {
+  COMMON
+  UNCOMMON
+  RARE
+  VERY_RARE
+  LEGENDARY
+}
+
+enum ObjType {
+  ARMOR
+}
+
+/////////////////////////////////// MODELS ////////////////////////////////////
 model User {
-  id              String           @id @default(cuid())
-  name            String?
-  email           String           @unique
-  emailVerified   DateTime?
-  image           String?
-  accounts        Account[]
-  Rooms           Room[]
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          Role      @default(USER)
+
   characterSheets CharacterSheet[]
-  password        String?
-  role            Role             @default(USER)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Account {
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-
+model CharacterSheet {
+  id        String   @id @default(cuid())
+  ownerId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // General Info
+  name              String  @default("New Character")
+  description       String? @default("New Character Description")
+  level             Int     @default(1)
+  race              String  @default("human")
+  class             String  @default("barbarian")
+  armorClass        Int     @default(0)
+  initiative        Int     @default(0)
+  hitPoints         Int     @default(0)
+  currentHitPoints  Int     @default(0)
+  tempHitPoints     Int     @default(0)
+  size              String  @default("1.70m")
+  speed             String  @default("25tf")
+  senses            String  @default("Normal 60ft")
+  languages         String  @default("Common")
+  passivePerception Int     @default(0)
+  proficiencyBonus  Int     @default(0)
 
-  @@id([provider, providerAccountId])
+  // Foreign keys
+  stats        Stat[]
+  skills       Skill[]
+  savingThrows SavingThrow[]
+  Inventory    Inventory[]
+  owner        User          @relation(fields: [ownerId], references: [id], onDelete: Cascade)
 }
 
-// Game rooms model
-model Room {
-  id          String  @id @default(cuid())
+model Stat {
+  id               String          @id @default(cuid())
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  order            Int
+  statType         StatType
+  value            Int             @default(0)
+  modifier         Int             @default(0)
+  CharacterSheet   CharacterSheet? @relation(fields: [characterSheetId], references: [id])
+  characterSheetId String?
+}
+
+model Skill {
+  id               String          @id @default(cuid())
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  order            Int
+  skillType        SkillType
+  statType         StatType
+  value            Int             @default(0)
+  proficiency      Boolean         @default(false)
+  CharacterSheet   CharacterSheet? @relation(fields: [characterSheetId], references: [id])
+  characterSheetId String?
+}
+
+model SavingThrow {
+  id               String          @id @default(cuid())
+  createdAt        DateTime        @default(now())
+  updatedAt        DateTime        @updatedAt
+  order            Int
+  statType         StatType
+  value            Int             @default(0)
+  proficiency      Boolean         @default(false)
+  CharacterSheet   CharacterSheet? @relation(fields: [characterSheetId], references: [id])
+  characterSheetId String?
+}
+
+model Inventory {
+  // Standard
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Fields
+  characterSheetId String?
+  objectItemId     String?
+  note             String?
+
+  // Foreign keys
+  characterSheet CharacterSheet? @relation(fields: [characterSheetId], references: [id])
+  objectItem     ObjectItem?     @relation(fields: [objectItemId], references: [id])
+}
+
+model ObjectItem {
+  // Standard
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Default fields
+  objType     ObjType
   name        String
   description String
-  limit       Int
-  isActive    Boolean @default(true)
-  isPublic    Boolean @default(true)
-  ownerId     String
+  weight      Float   @default(0)
+  price       Float   @default(0)
+  rarity      Rarity  @default(COMMON)
+  isEquipped  Boolean @default(false)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  // Armor fields
+  armorType         ArmorType?
+  armorClass        String?
+  armorRequirements String?
 
-  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-}
-
-// Character sheet
-model CharacterSheet {
-  id          String   @id @default(cuid())
-  name        String
-  description String?
-  level       String
-  raza        String
-  clase       String
-  ownerId     String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  // Details
-  size              String @default("1.70m")
-  speed             String @default("25tf")
-  senses            String @default("Normalvision 60ft")
-  languages         String @default("Common")
-  passivePerception Int    @default(0)
-  proficiencyBonus  Int    @default(0)
-  armorClass        Int    @default(0)
-  initiative        Int    @default(0)
-  hitPoints         Int    @default(0)
-  currentHitPoints  Int    @default(0)
-  tempHitPoints     Int    @default(0)
-
-  // Stats
-  strength        Int @default(0)
-  strengthMod     Int @default(0)
-  dexterity       Int @default(0)
-  dexterityMod    Int @default(0)
-  constitution    Int @default(0)
-  constitutionMod Int @default(0)
-  intelligence    Int @default(0)
-  intelligenceMod Int @default(0)
-  wisdom          Int @default(0)
-  wisdomMod       Int @default(0)
-  charisma        Int @default(0)
-  charismaMod     Int @default(0)
-
-  // Savings Thorows
-  autoCalculateSavingsThorows Boolean @default(true)
-  savingStrength              Int     @default(0)
-  competenceStrength          Boolean @default(false)
-  savingDexterity             Int     @default(0)
-  competenceDexterity         Boolean @default(false)
-  savingConstitution          Int     @default(0)
-  competenceConstitution      Boolean @default(false)
-  savingIntelligence          Int     @default(0)
-  competenceIntelligence      Boolean @default(false)
-  savingWisdom                Int     @default(0)
-  competenceWisdom            Boolean @default(false)
-  savingCharisma              Int     @default(0)
-  competenceCharisma          Boolean @default(false)
-
-  // Skills
-  autoCalculateSkills      Boolean @default(true)
-  acrobatics               Int     @default(0)
-  competenceAcrobatics     Boolean @default(false)
-  animalHandling           Int     @default(0)
-  competenceAnimalHandling Boolean @default(false)
-  arcana                   Int     @default(0)
-  competenceArcana         Boolean @default(false)
-  athletics                Int     @default(0)
-  competenceAthletics      Boolean @default(false)
-  deception                Int     @default(0)
-  competenceDeception      Boolean @default(false)
-  history                  Int     @default(0)
-  competenceHistory        Boolean @default(false)
-  insight                  Int     @default(0)
-  competenceInsight        Boolean @default(false)
-  intimidation             Int     @default(0)
-  competenceIntimidation   Boolean @default(false)
-  investigation            Int     @default(0)
-  competenceInvestigation  Boolean @default(false)
-  medicine                 Int     @default(0)
-  competenceMedicine       Boolean @default(false)
-  nature                   Int     @default(0)
-  competenceNature         Boolean @default(false)
-  perception               Int     @default(0)
-  competencePerception     Boolean @default(false)
-  performance              Int     @default(0)
-  competencePerformance    Boolean @default(false)
-  persuasion               Int     @default(0)
-  competencePersuasion     Boolean @default(false)
-  religion                 Int     @default(0)
-  competenceReligion       Boolean @default(false)
-  sleightOfHand            Int     @default(0)
-  competenceSleightOfHand  Boolean @default(false)
-  stealth                  Int     @default(0)
-  competenceStealth        Boolean @default(false)
-  survival                 Int     @default(0)
-  competenceSurvival       Boolean @default(false)  
-
-  owner User @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  // Foreign keys
+  Inventory Inventory[]
 }
