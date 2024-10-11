@@ -1,7 +1,7 @@
 import { useSheetStore } from '@/store/sheetStore'
 import { useTranslations } from 'next-intl'
 
-export default function SheetBodyDetails() {
+export default function SheetDetails() {
   const t = useTranslations()
   const { sheet, enableEdit, updateSheet } = useSheetStore()
 

@@ -169,7 +169,7 @@ export const getSheetByIdAction = async ({ sheetId }: { sheetId: string }) => {
 
     return { status: 'success', error: null, response: sheet }
   } catch (error) {
-    console.error(error) 
+    console.error(error)
     return { error: 'error 500', status: 'error' }
   }
 }

@@ -1,9 +1,8 @@
 import { Checkbox } from '@/components/ui/checkbox'
 import { useSheetStore } from '@/store/sheetStore'
-import { CheckedState } from '@radix-ui/react-checkbox'
 import { useTranslations } from 'next-intl'
 
-export default function SheetBodySkills() {
+export default function SheetSkills() {
   const t = useTranslations()
 
   const { skills, isTheOwner } = useSheetStore()

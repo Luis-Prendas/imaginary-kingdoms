@@ -6,6 +6,7 @@ import {
 } from '@/actions/sheet-actions'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
+import { Separator } from '@/components/ui/separator'
 import { useToast } from '@/hooks/use-toast'
 import { useSheetStore } from '@/store/sheetStore'
 import { Icon } from '@iconify/react/dist/iconify.js'
@@ -18,7 +19,7 @@ interface Props {
   emerging: boolean
 }
 
-export default function MainHeader({ emerging }: Props) {
+export default function SheetHeader({ emerging }: Props) {
   const t = useTranslations()
   const { toast } = useToast()
 

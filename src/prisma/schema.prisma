@@ -156,6 +156,7 @@ model Inventory {
   characterSheetId String?
   objectItemId     String?
   note             String?
+  cuantity         Int?    @default(1)
 
   // Foreign keys
   characterSheet CharacterSheet? @relation(fields: [characterSheetId], references: [id])

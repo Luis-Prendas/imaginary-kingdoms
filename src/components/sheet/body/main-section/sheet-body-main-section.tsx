@@ -1,12 +1,11 @@
 import { Checkbox } from '@/components/ui/checkbox'
 import Logo from '@/components/ui/logo'
 import { Separator } from '@/components/ui/separator'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { useSheetStore } from '@/store/sheetStore'
-import { CheckedState } from '@radix-ui/react-checkbox'
 import { useTranslations } from 'next-intl'
 
-export default function SheetBodyHeader() {
+export default function SheetBodyMainSection() {
   const t = useTranslations()
   const { sheet, stats, savingThrows, enableEdit, isTheOwner, updateSheet, updateStat } = useSheetStore()
 
@@ -287,10 +286,7 @@ export default function SheetBodyHeader() {
           {savingThrows?.map((savingThrow) => (
             <div key={savingThrow.id} className='rounded w-full bg-secondary p-1 flex justify-center items-center'>
               <span className='flex items-center gap-1'>
-                <Checkbox
-                  disabled={isTheOwner ? false : true}
-                  defaultChecked={savingThrow.proficiency}
-                />
+                <Checkbox disabled={isTheOwner ? false : true} defaultChecked={savingThrow.proficiency} />
                 {t(`sheet.savingsThorows.abreviation.${savingThrow.statType}`)}{' '}
                 {savingThrow?.value >= 0 ? (
                   <strong className='text-green-600'>+{savingThrow?.value}</strong>
