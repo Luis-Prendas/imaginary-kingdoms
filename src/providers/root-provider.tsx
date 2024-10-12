@@ -8,8 +8,8 @@ export default function RootProvider({ children }: { children: React.ReactNode }
     <SessionProvider>
       <ThemeProvider attribute='class' defaultTheme='dark' enableSystem disableTransitionOnChange>
         <LanguageProvider>{children}</LanguageProvider>
+        <Toaster />
       </ThemeProvider>
-      <Toaster />
     </SessionProvider>
   )
 }

@@ -3,13 +3,162 @@ import { CharacterSheet, Inventory, ObjectItem, Prisma, SavingThrow, Skill, Stat
 import { getSession, useSession } from 'next-auth/react'
 import { create } from 'zustand'
 
+type Sheet = CharacterSheet
+
+const SHEET: Sheet = {
+  name: '',
+  description: '',
+  level: 1,
+  race: '',
+  class: '',
+  armorClass: 0,
+  initiative: 0,
+  hitPoints: 0,
+  currentHitPoints: 0,
+  tempHitPoints: 0,
+  size: '',
+  speed: '',
+  senses: '',
+  languages: '',
+  passivePerception: 0,
+  proficiencyBonus: 2,
+  ownerId: '',
+  createdAt: new Date(),
+  updatedAt: new Date(),
+  id: '',
+}
+
+const STATS: Stat[] = [
+  {
+    statType: 'STRENGTH',
+    value: 0,
+    modifier: 0,
+    characterSheetId: '',
+    order: 1,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '1',
+  },
+  {
+    statType: 'DEXTERITY',
+    value: 0,
+    modifier: 0,
+    characterSheetId: '',
+    order: 2,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '2',
+  },
+  {
+    statType: 'CONSTITUTION',
+    value: 0,
+    modifier: 0,
+    characterSheetId: '',
+    order: 3,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '3',
+  },
+  {
+    statType: 'INTELLIGENCE',
+    value: 0,
+    modifier: 0,
+    characterSheetId: '',
+    order: 4,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '4',
+  },
+  {
+    statType: 'WISDOM',
+    value: 0,
+    modifier: 0,
+    characterSheetId: '',
+    order: 5,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '5',
+  },
+  {
+    statType: 'CHARISMA',
+    value: 0,
+    modifier: 0,
+    characterSheetId: '',
+    order: 6,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '6',
+  },
+]
+
+const SAVING_THROWS: SavingThrow[] = [
+  {
+    statType: 'STRENGTH',
+    value: 0,
+    proficiency: false,
+    characterSheetId: '',
+    order: 1,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '1',
+  },
+  {
+    statType: 'DEXTERITY',
+    value: 0,
+    proficiency: false,
+    characterSheetId: '',
+    order: 2,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '2',
+  },
+  {
+    statType: 'CONSTITUTION',
+    value: 0,
+    proficiency: false,
+    characterSheetId: '',
+    order: 3,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '3',
+  },
+  {
+    statType: 'INTELLIGENCE',
+    value: 0,
+    proficiency: false,
+    characterSheetId: '',
+    order: 4,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '4',
+  },
+  {
+    statType: 'WISDOM',
+    value: 0,
+    proficiency: false,
+    characterSheetId: '',
+    order: 5,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '5',
+  },
+  {
+    statType: 'CHARISMA',
+    value: 0,
+    proficiency: false,
+    characterSheetId: '',
+    order: 6,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    id: '6',
+  },
+]
+
 type Objects = Prisma.InventoryGetPayload<{
   include: {
     objectItem: true
   }
 }>
-
-type Sheet = CharacterSheet
 
 type SheetStore = {
   isTheOwner: boolean
@@ -31,7 +180,9 @@ type SheetStore = {
   updateSkill: ({ newValue, skillId }: { newValue: number; skillId: string }) => void
   updateStat: ({ newValue, statId }: { newValue: number; statId: string }) => void
   updateSavingThrow: ({ newValue, field }: { newValue: string | number; field: string }) => void
+  updateStatsProficiencyBonus: ({ isProficiencyBonus, statId }: { isProficiencyBonus: boolean; statId: string }) => void
   autoCalculateSheet: () => void
+  newSheet: () => void
 }
 
 export const useSheetStore = create<SheetStore>((set, get) => ({
@@ -39,11 +190,11 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
   autoCalculate: true,
   enableSave: false,
   enableEdit: true,
-  sheet: null,
+  sheet: SHEET,
   owner: null,
   skills: null,
-  stats: null,
-  savingThrows: null,
+  stats: STATS,
+  savingThrows: SAVING_THROWS,
   inventory: null,
   async setEnableSave(enableSave) {
     set({ enableSave })
@@ -106,6 +257,18 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
     set({ enableSave: true })
     set({ savingThrows: updatedSavingThrow })
   },
+  async updateStatsProficiencyBonus({ isProficiencyBonus, statId }) {
+    const currentSavingThrow = get().savingThrows as SavingThrow[]
+    const updatedSavingThrow = currentSavingThrow.map((savingThrow) => {
+      if (savingThrow.statType === statId) {
+        return { ...savingThrow, proficiency: isProficiencyBonus }
+      }
+      return savingThrow
+    })
+    set({ enableSave: true })
+    set({ savingThrows: updatedSavingThrow })
+    if (get().autoCalculate) get().autoCalculateSheet()
+  },
   async autoCalculateSheet() {
     const sheet = get().sheet as Sheet
     const currentSavingThrow = get().savingThrows as SavingThrow[]
@@ -119,5 +282,12 @@ export const useSheetStore = create<SheetStore>((set, get) => ({
     })
 
     set({ savingThrows: updatedSavingThrow })
+  },
+  async newSheet() {
+    set({ isTheOwner: true })
+    set({ enableSave: false })
+    set({ sheet: SHEET })
+    set({ stats: STATS })
+    set({ savingThrows: SAVING_THROWS })
   },
 }))

@@ -6,11 +6,10 @@ import {
 } from '@/actions/sheet-actions'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
+import Logo from '@/components/ui/logo'
 import { useToast } from '@/hooks/use-toast'
 import { useSheetStore } from '@/store/sheetStore'
 import { Icon } from '@iconify/react/dist/iconify.js'
-import { FigmaLogoIcon } from '@radix-ui/react-icons'
 import { useSession } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
@@ -51,8 +50,8 @@ export default function SheetHeader({ emerging }: Props) {
 
   return (
     <header className='flex w-full justify-between p-2'>
-      <div className='flex gap-2 items-center'>
-        <FigmaLogoIcon className='w-5 h-5' fill='#530800' />
+      <div className='flex gap-2 items-center justify-center'>
+        <Logo className='w-5 h-5' fill='#530800' />
         <h4>{t('sheet.characterSheet')}</h4>
         {isTheOwner ? (
           <button onClick={() => setEnableEdit(!enableEdit)}>

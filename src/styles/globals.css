@@ -26,6 +26,12 @@ body {
 }
 
 @layer base {
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   :root {
     --background: 161 70% 98%;
     --foreground: 161 74% 0%;
@@ -72,12 +78,15 @@ body {
   }
 }
 
-@layer base {
-  * {
-    border: var(--border);
+@layer components {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
-  body {
-    background-color: var(--background);
-    color: var(--foreground);
+
+  input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
   }
 }
+

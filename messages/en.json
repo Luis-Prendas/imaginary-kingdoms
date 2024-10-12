@@ -26,7 +26,7 @@
     }
   },
   "sheet": {
-    "new": "New Character",
+    "newCharacterSheet": "New Character",
     "by": "By",
     "save": "Save",
     "successSaveMessage": "The sheet was saved successfully.",
@@ -168,5 +168,18 @@
   "tabs": {
     "main": "Main",
     "inventory": "Inventory"
+  },
+  "createSheet": {
+    "required": "Required",
+    "race": "Race",
+    "selectRace": "Select race",
+    "customRace": "Custom race",
+    "nameOfRace": "Name of race",
+    "class": "Class",
+    "selectClass": "Select class",
+    "customClass": "Custom class",
+    "nameOfClass": "Name of class",
+    "name": "Name",
+    "description": "Description"
   }
 }
